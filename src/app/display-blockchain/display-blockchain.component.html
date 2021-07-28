@@ -1,6 +1,9 @@
 <div *ngFor="let block of blockchain">
-    {{ block.Index }}
-    <br>
-    {{ block | json }}
+    <div>Index: {{ block.Index }}</div>
+    <div>Seller: {{ block.AllData.Seller }}</div>
+    <div>Buyer: {{ block.AllData.Buyer }}</div>
+    <div>Amount: {{ block.AllData.Amount }}</div>
+    <div>Price: {{ block.AllData.Price }}</div>
+    <div style="color: crimson;">Details: {{ block | json }}</div>
     <br><br>
-</div>  
+</div>
