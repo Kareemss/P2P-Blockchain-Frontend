@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'p2p'`, () => {
+  it(`should have as title 'P2P-Blockchain-Frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('p2p');
+    expect(app.title).toEqual('P2P-Blockchain-Frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('p2p app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('P2P-Blockchain-Frontend app is running!');
   });
 });
