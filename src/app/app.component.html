@@ -1,4 +1,18 @@
 <h1 style="text-align: center;">
-  Blockchain from MongoDB
+  P2P Blockchain Frontend Page
+  <br>
+  <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
 </h1>
-<app-display-blockchain></app-display-blockchain>
+<!-- <app-display-blockchain></app-display-blockchain> -->
+
+<div *ngIf="toDisplay" class="container-fluid">
+  <div *ngFor="let block of blockchain">
+    <div>Index: {{ block.Index }}</div>
+    <div>Seller: {{ block.AllData.Seller }}</div>
+    <div>Buyer: {{ block.AllData.Buyer }}</div>
+    <div>Amount: {{ block.AllData.Amount }}</div>
+    <div>Price: {{ block.AllData.Price }}</div>
+    <div style="color: crimson;">Details: {{ block | json }}</div>
+    <br><br>
+  </div>
+</div>
