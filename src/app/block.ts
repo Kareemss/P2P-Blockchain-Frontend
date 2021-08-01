@@ -14,3 +14,10 @@ export interface dataInterface {
     Amount: number,
     Price: number
 }
+
+export class Data {
+    Seller!: string
+    Buyer!: string
+    Amount!: number
+    Price!: number
+}
