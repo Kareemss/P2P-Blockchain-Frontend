@@ -1,0 +1,38 @@
+<form>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="text" class="form-control" placeholder="FullName" name="FullName" [(ngModel)]="user.FullName">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="text" class="form-control" placeholder="ID" name="ID" [(ngModel)]="user.ID">
+        </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="number" class="form-control"  placeholder="Phone number" name="PhoneNumber" [(ngModel)]="user.PhoneNumber">
+        </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="email" class="form-control"  placeholder="Email"  name="Email" [(ngModel)]="user.Email">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="text" class="form-control" placeholder="Address" name="Address" [(ngModel)]="user.Address">
+        </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="number" class="form-control"  placeholder="Smart Meter Number" name="SamrtMeterNumber" [(ngModel)]="user.SmartMeterNumber">
+        </div>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input id="" type="password" class="form-control"  placeholder="PasswordHash"  name="PasswordHash" [(ngModel)]="user.PasswordHash">
+    </div>
+
+    <div>
+        <button (click)="addUserProfile()" class="btn btn-primary" type="button" >Create user profile</button>
+    </div>
+</form>
+
+<div>
+    <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>
+</div>

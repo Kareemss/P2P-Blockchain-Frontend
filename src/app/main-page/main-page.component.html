@@ -1,0 +1,16 @@
+<div>
+    <div>
+        <!-- <button routerLink="/transaction" routerLinkActive="active" class="btn btn-primary" type="button"> Go make transaction </button> -->
+        <button (click)=onSelect(PageList[0]) class="btn btn-primary" type="button"> Go Blockchain Page </button>
+      </div>
+    <div>
+      <!-- <button routerLink="/transaction" routerLinkActive="active" class="btn btn-primary" type="button"> Go make transaction </button> -->
+      <button (click)=onSelect(PageList[1]) class="btn btn-primary" type="button"> Go Transaction Page </button>
+    </div>
+    <div>  
+      <!-- /<button routerLink="/userprofile" routerLinkActive="active" class="btn btn-primary" type="button"> Go User Profile Page </button> -->
+      <button (click)=onSelect(PageList[2]) class="btn btn-primary" type="button"> Go User Profile Page </button>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
