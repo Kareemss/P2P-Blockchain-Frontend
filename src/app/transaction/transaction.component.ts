@@ -30,4 +30,8 @@ export class TransactionComponent implements OnInit {
         console.log(data)
       })      
   }
+
+  goBack(){
+    this._httpService.goBack();
+  }
 }

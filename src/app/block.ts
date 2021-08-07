@@ -21,3 +21,13 @@ export class Data {
     Amount!: number
     Price!: number
 }
+
+export class User{
+    FullName!: string
+    ID!: string
+    PhoneNumber!: number
+    Email!: string
+    Address!: string
+    SmartMeterNumber!: number
+    PasswordHash!: string   
+}
