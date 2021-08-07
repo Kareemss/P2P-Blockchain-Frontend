@@ -1,4 +1,12 @@
-<div *ngFor="let block of blockchain">
+
+<div>
+    <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
+</div>
+<div>
+    <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>
+</div>
+
+<div *ngFor="let block of blockchain.slice().reverse()">
     <div>Index: {{ block.Index }}</div>
     <div>Seller: {{ block.AllData.Seller }}</div>
     <div>Buyer: {{ block.AllData.Buyer }}</div>

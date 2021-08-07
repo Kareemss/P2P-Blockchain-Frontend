@@ -9,13 +9,17 @@ import { DisplayBlockchainComponent } from './display-blockchain/display-blockch
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { TransactionComponent } from './transaction/transaction.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayBlockchainComponent,
     TransactionComponent,
-    routingComponents
+    routingComponents,
+    UserProfileComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
