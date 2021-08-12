@@ -29,5 +29,5 @@ export class User{
     Email!: string
     Address!: string
     SmartMeterNumber!: number
-    PasswordHash!: string   
+    Password!: string   
 }
