@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DisplayBlockchainComponent } from './display-blockchain/display-blockchain.component';
+import { LoginComponent } from './login/login.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -10,7 +11,9 @@ const routes: Routes = [
   {path:'mainpage',component: MainPageComponent},  
   {path:'mainpage/blockchain',component:DisplayBlockchainComponent},
   {path:'mainpage/transaction',component:TransactionComponent},
-  {path:'mainpage/userprofile',component:UserProfileComponent}
+  {path:'mainpage/userprofile',component:UserProfileComponent},
+  {path:'mainpage/login',component:LoginComponent}
+
 ];
 
 // const routes: Routes = [
@@ -31,4 +34,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [MainPageComponent,DisplayBlockchainComponent, TransactionComponent,UserProfileComponent];
+export const routingComponents = [MainPageComponent,DisplayBlockchainComponent, TransactionComponent,UserProfileComponent,LoginComponent];
