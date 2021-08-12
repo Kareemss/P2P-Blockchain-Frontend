@@ -25,11 +25,11 @@
         </div>
     <div class="input-group">
         <span class="input-group-addon"></span>
-        <input id="" type="password" class="form-control"  placeholder="PasswordHash"  name="PasswordHash" [(ngModel)]="user.PasswordHash">
+        <input id="" type="password" class="form-control"  placeholder="Password"  name="PasswordHash" [(ngModel)]="user.PasswordHash">
     </div>
 
     <div>
-        <button (click)="addUserProfile()" class="btn btn-primary" type="button" >Create user profile</button>
+        <button (click)="addUserProfile();goLogin()" class="btn btn-primary" type="button" >Create user profile</button>
     </div>
 </form>
 

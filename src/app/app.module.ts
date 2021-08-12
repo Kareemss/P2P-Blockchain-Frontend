@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TransactionComponent } from './transaction/transaction.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     TransactionComponent,
     routingComponents,
     UserProfileComponent,
-    MainPageComponent
+    MainPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
