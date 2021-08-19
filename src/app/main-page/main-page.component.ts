@@ -32,6 +32,9 @@ export class MainPageComponent implements OnInit {
     this._httpService.goBack();
   }
   
+  openLandingPage(){
+    window.open('landingPage.component.html');
+  }
 
 }
 
