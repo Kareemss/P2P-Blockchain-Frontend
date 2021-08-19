@@ -15,7 +15,8 @@ export class MainPageComponent implements OnInit {
   PageList = [
     {page:"blockchain"},
     {page:"transaction"},
-    {page:"userprofile"}
+    {page:"userprofile"},
+    {page:"landingPage"},
   ]
 
   constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
@@ -31,6 +32,9 @@ export class MainPageComponent implements OnInit {
     this._httpService.goBack();
   }
   
+  openLandingPage(){
+    window.open('landingPage.component.html');
+  }
 
 }
 
