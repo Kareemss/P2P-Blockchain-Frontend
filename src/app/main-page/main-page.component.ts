@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
     {page:"blockchain"},
     {page:"transaction"},
     {page:"userprofile"},
-    {page:"landingPage"},
+    {page:"login"}
   ]
 
   constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }

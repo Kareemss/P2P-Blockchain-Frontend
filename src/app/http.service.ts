@@ -13,6 +13,7 @@ export class HttpService {
   private _url: string = "http://localhost:8080/";
   private _url1: string = "http://localhost:8080/WriteBlock";
   private _url2: string = "http://localhost:8080/WriteUser";
+  private _url3: string = "http://localhost:8080/UserLogin";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }
@@ -26,6 +27,7 @@ export class HttpService {
     return this.http.get<blockInterface[]>(this._url);
   }
   
+  /* Do transaction in transaction tab */
   addTransaction(block: Data): Observable<any>{
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(block);
@@ -34,6 +36,7 @@ export class HttpService {
     return this.http.post(this._url1, body)
   }
 
+  /* Create user in userprofile tab */
   addUserProfile(user: User): Observable<any>{
     //const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(user);
@@ -44,4 +47,13 @@ export class HttpService {
   }
 
 
+  /* Login user in login tab */
+  loginUser(user: User): Observable<any>{
+    //const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(user);
+    //const body=JSON.parse(JSON.stringify(block));
+    console.log(body)
+    return this.http.post(this._url2, body)
+
+  }
 }
