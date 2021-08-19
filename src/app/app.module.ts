@@ -12,6 +12,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
+import { LandingPageComponent } from './landingPage/landingPage.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     routingComponents,
     UserProfileComponent,
     MainPageComponent,
-    LoginComponent
+    LoginComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
