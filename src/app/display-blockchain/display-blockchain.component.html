@@ -1,17 +1,161 @@
 
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/cc6a5db783.js" crossorigin="anonymous"></script>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card w3-right">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Market</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Profile</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">Merchandise</a>
+        <a href="#" class="w3-bar-item w3-button">Extras</a>
+        <a href="#" class="w3-bar-item w3-button">Media</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-theme w3-padding" id="myHeader">
+   
+  <div class="w3-center">
+  <h1 class="w3-wide w3-center">Blockchain Page</h1>
+  </div>
+</header>
+
+
+
+<div class="w3-container">
+  <hr>
+  <div class="w3-center">
+    <h2>Current Blockchain</h2>
+    <p w3-class="w3-large">Don't worry. W3.CSS takes care of your tables.</p>
+  </div>
+<div class="w3-responsive w3-card-4">
+ <!-- <div> {{ getBlockChain() }} </div> -->
+
+<!---->
 <div>
     <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
 </div>
-<div>
-    <button (click)="goBack()" class="btn btn-primary" type="button">Back</button>
-</div>
 
 <div *ngFor="let block of blockchain.slice().reverse()">
-    <div>Index: {{ block.Index }}</div>
-    <div>Seller: {{ block.AllData.Seller }}</div>
-    <div>Buyer: {{ block.AllData.Buyer }}</div>
-    <div>Amount: {{ block.AllData.Amount }}</div>
-    <div>Price: {{ block.AllData.Price }}</div>
-    <div style="color: crimson;">Details: {{ block | json }}</div>
-    <br><br>
+    
+    <table class="w3-table w3-striped w3-bordered">
+<thead>
+<tr class="w3-theme">
+  <th>Info</th>
+  <th>Info</th>
+  <th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><div>Index: {{ block.Index }}</div></td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+<tr class="w3-white">
+  <td>Seller: {{ block.AllData.Seller }}</td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+<tr>
+  <td>Info</td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+</tbody>
+</table>
+
 </div>
+</div>
+
+<hr>
+
+</div>
+
+
+
+
+
+
+<div class="w3-container">
+  <hr>
+  <div class="w3-center">
+    <h2>Current Blockchain</h2>
+    <p w3-class="w3-large">Don't worry. W3.CSS takes care of your tables.</p>
+  </div>
+<div class="w3-responsive w3-card-4">
+<table class="w3-table w3-striped w3-bordered">
+<thead>
+<tr class="w3-theme">
+  <th>Info</th>
+  <th>Info</th>
+  <th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Info</td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+<tr class="w3-white">
+  <td>Info</td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+<tr>
+  <td>Info/td>
+  <td>Info</td>
+  <td>Info</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+</div>
+
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-dark w3-padding-16">
+  <h3>Footer</h3>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme-light w3-padding">Go To Top</span>    
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div>
+  <p>Remember to check out our  <a href="w3css_references.asp" class="w3-btn w3-theme-light" target="_blank">W3.CSS Reference</a></p>
+</footer>
+
+<script>
+    console.log("blockchain below")
+    getBlockChain()
+
+
+</script>
+
+</body>
+</html>
+
