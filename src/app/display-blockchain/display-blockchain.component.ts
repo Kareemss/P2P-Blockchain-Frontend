@@ -15,12 +15,16 @@ export class DisplayBlockchainComponent implements OnInit {
 
   constructor(private _httpService: HttpService, private router: Router,private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
   
-  }
   getBlockchain() {
     this._httpService.getBlockChain().subscribe(data => this.blockchain = data);
     this.toDisplay = true;
+  }
+
+  ngAfterViewInit(){
+    // call the get blockchain meh=thod when page is loaded
+    this.getBlockchain();
   }
 
   

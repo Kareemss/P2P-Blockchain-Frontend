@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/cc6a5db783.js" crossorigin="anonymous"></script>
+
 <body>
 
 <!-- Navbar -->
@@ -44,92 +45,32 @@
   <hr>
   <div class="w3-center">
     <h2>Current Blockchain</h2>
-    <p w3-class="w3-large">Don't worry. W3.CSS takes care of your tables.</p>
+    
   </div>
 <div class="w3-responsive w3-card-4">
- <!-- <div> {{ getBlockChain() }} </div> -->
-
-<!---->
+ <!-- <div> {{ getBlockChain() }} </div> 
 <div>
     <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
 </div>
-
-<div *ngFor="let block of blockchain.slice().reverse()">
-    
-    <table class="w3-table w3-striped w3-bordered">
-<thead>
-<tr class="w3-theme">
-  <th>Info</th>
-  <th>Info</th>
-  <th>Info</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><div>Index: {{ block.Index }}</div></td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
-<tr class="w3-white">
-  <td>Seller: {{ block.AllData.Seller }}</td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
-<tr>
-  <td>Info</td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-
-<hr>
-
-</div>
+-->
 
 
-
-
-
-
-<div class="w3-container">
-  <hr>
-  <div class="w3-center">
-    <h2>Current Blockchain</h2>
-    <p w3-class="w3-large">Don't worry. W3.CSS takes care of your tables.</p>
-  </div>
-<div class="w3-responsive w3-card-4">
 <table class="w3-table w3-striped w3-bordered">
-<thead>
-<tr class="w3-theme">
-  <th>Info</th>
-  <th>Info</th>
-  <th>Info</th>
-</tr>
-</thead>
+<thead><tr class="w3-black"><th>Index&nbsp;&nbsp;&nbsp;&nbsp;Seller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buyer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Details</th></tr></thead>
 <tbody>
-<tr>
-  <td>Info</td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
-<tr class="w3-white">
-  <td>Info</td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
-<tr>
-  <td>Info/td>
-  <td>Info</td>
-  <td>Info</td>
-</tr>
+<div *ngFor="let block of blockchain.slice().reverse()">
+    <tr class="w3-white">
+        <td class="w3-border-left">Index: {{ block.Index }}</td>
+        <td class="w3-border-left">Seller: {{ block.AllData.Seller }}</td>
+        <td class="w3-border-left">Buyer: {{ block.AllData.Buyer }}</td>
+        <td class="w3-border-left">Amount: {{ block.AllData.Amount }}</td>
+        <td class="w3-border-left">Price: {{ block.AllData.Price }}</td>
+        <td class="w3-border-left">Details: {{ block | json }}</td>
+    </tr>
+</div>
 </tbody>
 </table>
 </div>
-
 <hr>
 
 </div>
@@ -149,12 +90,6 @@
   <p>Remember to check out our  <a href="w3css_references.asp" class="w3-btn w3-theme-light" target="_blank">W3.CSS Reference</a></p>
 </footer>
 
-<script>
-    console.log("blockchain below")
-    getBlockChain()
-
-
-</script>
 
 </body>
 </html>
