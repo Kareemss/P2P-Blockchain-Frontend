@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../block';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,14 +28,17 @@ export class LoginComponent implements OnInit {
   
       if (data == true){
         this.router.navigate(['../landingPage'],{relativeTo: this.route});
-  
+       
       }
       else {
+        this.error("Email or password is incorrect")
       }
     })
     
   }
-  
+  error(message: string) {
+    return throwError({ error: { message } });
+}
   goBack(){
     this._httpService.goBack();
   }
