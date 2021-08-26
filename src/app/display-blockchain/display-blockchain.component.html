@@ -47,31 +47,25 @@
     <h2>Current Blockchain</h2>
     
   </div>
-<div class="w3-responsive w3-card-4">
- <!-- <div> {{ getBlockChain() }} </div> 
-<div>
-    <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
-</div>
--->
 
-
-<table class="w3-table w3-striped w3-bordered">
-<thead><tr class="w3-black"><th>Index&nbsp;&nbsp;&nbsp;&nbsp;Seller&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buyer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Details</th></tr></thead>
-<tbody>
-<div *ngFor="let block of blockchain.slice().reverse()">
-    <tr class="w3-white">
-        <td class="w3-border-left">Index: {{ block.Index }}</td>
-        <td class="w3-border-left">Seller: {{ block.AllData.Seller }}</td>
-        <td class="w3-border-left">Buyer: {{ block.AllData.Buyer }}</td>
-        <td class="w3-border-left">Amount: {{ block.AllData.Amount }}</td>
-        <td class="w3-border-left">Price: {{ block.AllData.Price }}</td>
-        <td class="w3-border-left">Details: {{ block | json }}</td>
-    </tr>
-</div>
-</tbody>
-</table>
-</div>
-<hr>
+  
+    <div *ngFor="let block of blockchain.slice().reverse()">
+      <div class="w3-card-4">
+              
+        <p><b>Index:</b> {{ block.Index }}</p>
+        <p><b>Seller:</b> {{ block.AllData.Seller }}</p>
+        <p><b>Buyer:</b> {{ block.AllData.Buyer }}</p>
+        <p><b>Amount:</b> {{ block.AllData.Amount }}</p>
+        <p><b>Price:</b> {{ block.AllData.Price }}</p>
+        <p><b>Previous Hash:</b> {{ block.PrevHash }}</p>
+        <p><b>Current Hash:</b> {{ block.Hash }}</p>
+        <p><b>Timestamp:</b> {{ block.Timestamp.slice(0, 19) }}</p> 
+                
+        <!-- <p>Details: {{ block | json }}</p>-->
+      </div>        
+    </div>
+      
+    
 
 </div>
 
