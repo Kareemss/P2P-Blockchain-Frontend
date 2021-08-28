@@ -1,6 +1,3 @@
-
-
-
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -23,8 +20,12 @@ export class LandingPageComponent implements OnInit{
     ngOnInit(): void{
     }
 
-    onSelect(){
+    toBlockChainPage(){
         this.router.navigate(['../blockchain'],{relativeTo: this.route});
+    }
+
+    toMarketPage(){
+        this.router.navigate(['../market'],{relativeTo: this.route});
     }
 
     goBack(){
