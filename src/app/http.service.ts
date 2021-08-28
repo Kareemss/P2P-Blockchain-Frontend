@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { blockInterface, Data, User, marketInterface } from './block';
+import { blockInterface, Data, User, dataInterface } from './block';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -34,8 +34,8 @@ export class HttpService {
   }
   
 
-  getMarket():Observable<marketInterface[]>{
-    return this.http.get<marketInterface[]>(this._url5);
+  getMarket():Observable<dataInterface[]>{
+    return this.http.get<dataInterface[]>(this._url5);
   }
 
   /* Do transaction in transaction tab */
