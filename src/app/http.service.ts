@@ -14,6 +14,7 @@ export class HttpService {
   private _url1: string = "http://localhost:8080/WriteBlock";
   private _url2: string = "http://localhost:8080/WriteUser";
   private _url3: string = "http://localhost:8080/UserLogin";
+  private _url4: string = "http://localhost:8080/WriteOrder";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }
@@ -28,12 +29,12 @@ export class HttpService {
   }
   
   /* Do transaction in transaction tab */
-  addTransaction(block: Data): Observable<any>{
+  AddTransaction(block: Data): Observable<any>{
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(block);
     //const body=JSON.parse(JSON.stringify(block));
     console.log(body)
-    return this.http.post(this._url1, body)
+    return this.http.post(this._url4, body)
   }
 
   /* Create user in userprofile tab */

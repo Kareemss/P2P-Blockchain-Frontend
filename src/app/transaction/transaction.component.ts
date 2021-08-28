@@ -25,7 +25,7 @@ export class TransactionComponent implements OnInit {
   }
   //subscribe to the post service 
   addTransaction() {
-    this._httpService.addTransaction(this.block)
+    this._httpService.AddTransaction(this.block)
       .subscribe(data => {
         console.log(data)
       })      

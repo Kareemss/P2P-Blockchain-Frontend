@@ -16,6 +16,7 @@ export interface dataInterface {
 }
 
 export class Data {
+    Issuer!: string
     Seller!: string
     Buyer!: string
     Amount!: number

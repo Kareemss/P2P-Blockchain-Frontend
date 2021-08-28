@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { blockInterface } from '../block';
 import { Data, dataInterface } from '../block';
 import { HttpService } from '../http.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
     selector:'app-landingPage',
@@ -15,8 +16,8 @@ import { HttpService } from '../http.service';
     styleUrls: ['./landingPage.component.css']
 })
 export class LandingPageComponent implements OnInit{
-
-    constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
+    block = new Data()
+    constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) { }
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
@@ -28,6 +29,11 @@ export class LandingPageComponent implements OnInit{
 
     goBack(){
         this._httpService.goBack();
+    }
+    AddTransaction(){
+        this._httpService.AddTransaction(this.block).subscribe(data=>{
+            console.log(data)
+        })
     }
 
 }

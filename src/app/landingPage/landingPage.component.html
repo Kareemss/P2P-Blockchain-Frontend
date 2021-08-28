@@ -84,24 +84,24 @@
       <div class="w3-container">
         
         
-        <p><label><i class="fa fa-user"></i> Buyer</label>
+        <!-- <p><label><i class="fa fa-user"></i> Buyer</label>
           <input class="w3-input w3-border" type="text" placeholder="">
         </p>
 
         <p><label><i class="fa fa-user"></i>Seller</label>
           <input class="w3-input w3-border" type="text" placeholder="">
-        </p>
+        </p> -->
 
         <p><label><i class="fa fa-user"></i>Amount</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
+          <input class="w3-input w3-border" type="number" placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
         </p>
 
         <p><label><i class="fa fa-user"></i>Price</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
+          <input type="number" class="w3-input w3-border" placeholder="Price ($)" [(ngModel)]="block.Price">
         </p>
 
        
-        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">ISSUE ORDER <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">BUY <i class="fa fa-check"></i></button>
       </div>
     </div>
   </div>
@@ -117,24 +117,24 @@
       </header>
       <div class="w3-container">
 
-         <p><label><i class="fa fa-user"></i> Buyer</label>
+         <!-- <p><label><i class="fa fa-user"></i> Buyer</label>
           <input class="w3-input w3-border" type="text" placeholder="">
         </p>
 
         <p><label><i class="fa fa-user"></i>Seller</label>
           <input class="w3-input w3-border" type="text" placeholder="">
-        </p>
+        </p> -->
 
         <p><label><i class="fa fa-user"></i>Amount</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
+          <input class="w3-input w3-border" type="number" placeholder="" [(ngModel)]="block.Amount">
         </p>
 
         <p><label><i class="fa fa-user"></i>Price</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
+          <input class="w3-input w3-border" type="number" placeholder="" [(ngModel)]="block.Price">
         </p>
 
     
-        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> SELL <i class="fa fa-check"></i></button>
+        <button (click)="AddTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> SELL <i class="fa fa-check"></i></button>
         
       </div>
     </div>
