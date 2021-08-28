@@ -8,6 +8,16 @@ export interface blockInterface {
 
 }
 
+export interface marketInterface {
+    Index: number,
+    Timestamp: string,
+    PrevHash: string,
+    Hash: string,
+    AllData: dataInterface,
+    IsGenesis: boolean
+
+}
+
 export interface dataInterface {
     Seller: string,
     Buyer: string,
