@@ -23,9 +23,90 @@ export class MarketPageComponent implements OnInit{
         this.toDisplay = true;
     }
 
-    onSelect(){
-        this.router.navigate(['../blockchain'],{relativeTo: this.route});
+    /** Show all sellers when "buy" is clicked */
+    showSellers(){
+        let htmlStr = ""
+        let sellerCount = 0
+        for(let i=0; i<this.market.length; i++){
+            let marketData = this.market[i]
+            let seller = marketData.Seller
+            if (seller != ""){
+                sellerCount += 1
+                htmlStr += "<div class='w3-card-4 w3-margin w3-padding'>"
+                htmlStr += "<div class='row'>"
+                
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Seller: " + seller +"</p>"
+                htmlStr += "</div>";
+
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Price: " + marketData.Price +"</p>"
+                htmlStr += "</div>";
+                
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
+                htmlStr += "</div>";
+                
+                htmlStr += "</div>";
+                htmlStr += "</div>";
+            }
+
+
+        }
+        if(sellerCount == 0){
+            document.getElementById("showMarketDetails")!.innerHTML = "<p><h2>No Sellers Yet !!</h2></p>";
+        }
+        else{
+            document.getElementById("showMarketDetails")!.innerHTML = htmlStr;
+        }
     }
+
+    /** Show all sellers when "buy" is clicked */
+    showBuyers(){
+        document.getElementById("showMarketDetails")!.innerHTML = "";
+        let htmlStr = ""
+        let buyerCount = 0
+        for(let i=0; i<this.market.length; i++){
+            let marketData = this.market[i]
+            let buyer = marketData.Buyer
+            if (buyer != ""){
+                buyerCount += 1
+                htmlStr += "<div class='w3-card-4 w3-margin w3-padding'>"
+                htmlStr += "<div class='row'>"
+                
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Buyer: " + buyer +"</p>"
+                htmlStr += "</div>";
+
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Price: " + marketData.Price +"</p>"
+                htmlStr += "</div>";
+                
+                htmlStr += "<div class='col-4'>"
+                htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
+                htmlStr += "</div>";
+                
+                htmlStr += "</div>";
+                htmlStr += "</div>";
+            }
+
+
+        }
+        if(buyerCount == 0){
+            document.getElementById("showMarketDetails")!.innerHTML = "<p><h2>No Buyers Yet !!</h2></p>";
+        }
+        else{
+            document.getElementById("showMarketDetails")!.innerHTML = htmlStr;
+        }
+        
+    }
+
+
+    ngAfterViewInit(){
+        // call the get blockchain meh=thod when page is loaded
+        this.getMarket();
+      }
+
 
     goBack(){
         this._httpService.goBack();
