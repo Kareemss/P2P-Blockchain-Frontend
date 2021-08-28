@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landingPage/landingPage.component';
+import { MarketPageComponent } from './marketPage/marketPage.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LandingPageComponent } from './landingPage/landingPage.component';
     UserProfileComponent,
     MainPageComponent,
     LoginComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MarketPageComponent
   ],
   imports: [
     BrowserModule,
