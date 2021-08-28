@@ -30,7 +30,7 @@ export class User{
     ID!: string
     PhoneNumber!: number
     Email!: string
-    Address!: string
+    UserName!: string
     SmartMeterNumber!: number
     PasswordHash!: string   
 }

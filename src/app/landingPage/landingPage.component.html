@@ -28,6 +28,8 @@
         <a href="#" class="w3-bar-item w3-button">Media</a>
       </div>
     </div>
+    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=toMarketPage()>Log In</button>
+    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=toMarketPage()>Sign Up</button>
 
   </div>
 </div>
@@ -36,7 +38,7 @@
 <header class="w3-container w3-theme w3-padding" id="myHeader">
    
   <div class="w3-center">
-  <h1 class="w3-wide w3-center">Peer to peer energy trading</h1>
+  <h1 class="w3-wide w3-center">P2P</h1>
   </div>
 </header>
 
@@ -84,24 +86,30 @@
       <div class="w3-container">
         
         
-        <!-- <p><label><i class="fa fa-user"></i> Buyer</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
+        <p><label><i class="fa fa-user"></i> Buyer</label>
+          <input class="w3-input w3-border" type="text" placeholder="" [(ngModel)]="block.Buyer">
         </p>
 
-        <p><label><i class="fa fa-user"></i>Seller</label>
+        <!-- <p><label><i class="fa fa-user"></i>Seller</label>
           <input class="w3-input w3-border" type="text" placeholder="">
-        </p> -->
+        </p>  -->
 
         <p><label><i class="fa fa-user"></i>Amount</label>
-          <input class="w3-input w3-border" type="number" placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01" 
+          placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
         </p>
 
         <p><label><i class="fa fa-user"></i>Price</label>
-          <input type="number" class="w3-input w3-border" placeholder="Price ($)" [(ngModel)]="block.Price">
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01"
+          placeholder="Price ($)" [(ngModel)]="block.Price">
         </p>
 
        
-        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">BUY <i class="fa fa-check"></i></button>
+        <button (click)="AddTransaction()" 
+        class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">
+        BUY <i class="fa fa-check"></i></button>
       </div>
     </div>
   </div>
@@ -126,15 +134,20 @@
         </p> 
 
         <p><label><i class="fa fa-user"></i>Amount</label>
-          <input class="w3-input w3-border" type="number" placeholder="" [(ngModel)]="block.Amount">
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01" 
+          placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
         </p>
 
         <p><label><i class="fa fa-user"></i>Price</label>
-          <input class="w3-input w3-border" type="number" placeholder="" [(ngModel)]="block.Price">
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01"
+          placeholder="Price ($)" [(ngModel)]="block.Price">
         </p>
 
     
-        <button (click)="AddTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> SELL <i class="fa fa-check"></i></button>
+        <button (click)="AddTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
+          SELL <i class="fa fa-check"></i></button>
         
       </div>
     </div>
@@ -142,7 +155,7 @@
 
 
 <div class="w3-container">
-<hr>
+<!-- <hr> -->
 
 </div>
 
@@ -151,7 +164,7 @@
 
 
 
-<div class="w3-container">
+<!-- <div class="w3-container">
   <hr>
   <div class="w3-center">
     <h2>Current Blockchain</h2>
@@ -191,12 +204,12 @@
 </div>
 
 
-<hr>
+<hr> -->
 
 
 
 
-<!-- Footer -->
+<!-- Footer
 <footer class="w3-container w3-theme-dark w3-padding-16">
   <h3>Footer</h3>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
@@ -209,5 +222,5 @@
 </footer>
 
 </body>
-</html>
+</html> -->
 

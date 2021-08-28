@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { DisplayBlockchainComponent } from './display-blockchain/display-blockchain.component';
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
-import { TransactionComponent } from './transaction/transaction.component';
+
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +19,6 @@ import { MarketPageComponent } from './marketPage/marketPage.component';
   declarations: [
     AppComponent,
     DisplayBlockchainComponent,
-    TransactionComponent,
     routingComponents,
     UserProfileComponent,
     MainPageComponent,
