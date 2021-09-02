@@ -32,6 +32,14 @@ export class DisplayBlockchainComponent implements OnInit {
   goBack(){
     this._httpService.goBack();
   }
-
+  toMarketPage(){
+    this.router.navigate(['../market'],{relativeTo: this.route});
+  }
+  goLogin(){
+    this.router.navigate(['../login'],{relativeTo: this.route});
+  }
+  goSignUp(){
+    this.router.navigate(['../signup'],{relativeTo: this.route});
+  }
 
 }

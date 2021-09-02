@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'mainpage',component: MainPageComponent},  
   {path:'mainpage/blockchain',component:DisplayBlockchainComponent},
   
-  {path:'mainpage/userprofile',component:UserProfileComponent},
+  {path:'mainpage/signup',component:UserProfileComponent},
   {path:'mainpage/login',component:LoginComponent},
   {path:'mainpage/landingPage',component:LandingPageComponent},
   {path:'mainpage/market',component:MarketPageComponent}

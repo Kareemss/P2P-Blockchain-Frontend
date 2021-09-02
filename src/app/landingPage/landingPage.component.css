@@ -7,3 +7,9 @@
 #SellH3{
     font-size: 6rem;
 }
+#login{
+  display: flex;
+  justify-content: right !important;
+  align-items: right !important;
+  cursor: pointer;
+}

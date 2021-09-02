@@ -7,6 +7,7 @@ import { Data, dataInterface } from '../block';
 import { HttpService } from '../http.service';
 import { ThisReceiver } from '@angular/compiler';
 
+
 @Component({
     selector:'app-landingPage',
     templateUrl: './landingPage.component.html',
@@ -35,6 +36,12 @@ export class LandingPageComponent implements OnInit{
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
         })
+    }
+    goLogin(){
+        this.router.navigate(['../login'],{relativeTo: this.route});
+      }
+    goSignUp(){
+        this.router.navigate(['../signup'],{relativeTo: this.route});
     }
 
 }

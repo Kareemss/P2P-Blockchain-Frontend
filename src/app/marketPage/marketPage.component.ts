@@ -3,6 +3,7 @@ import { dataInterface } from '../block';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 
+
 @Component({
     selector:'app-marketPage',
     templateUrl: './marketPage.component.html',
@@ -16,6 +17,7 @@ export class MarketPageComponent implements OnInit{
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
+        this.getMarket();
     }
 
     getMarket(){
@@ -45,6 +47,7 @@ export class MarketPageComponent implements OnInit{
                 
                 htmlStr += "<div class='col-4'>"
                 htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
+                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' (click)=''>Buy</button>";
                 htmlStr += "</div>";
                 
                 htmlStr += "</div>";
@@ -84,6 +87,7 @@ export class MarketPageComponent implements OnInit{
                 
                 htmlStr += "<div class='col-4'>"
                 htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
+                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' (click)=''>Sell</button>";
                 htmlStr += "</div>";
                 
                 htmlStr += "</div>";
@@ -111,4 +115,12 @@ export class MarketPageComponent implements OnInit{
     goBack(){
         this._httpService.goBack();
     }
+    goLogin(){
+        this.router.navigate(['../login'],{relativeTo: this.route});
+    }
+    goSignUp(){
+        this.router.navigate(['../signup'],{relativeTo: this.route});
+    }
+    
+    
 }

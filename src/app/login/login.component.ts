@@ -5,6 +5,7 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,14 +32,12 @@ export class LoginComponent implements OnInit {
        
       }
       else {
-        this.error("Email or password is incorrect")
+        document.getElementById("error")!.innerHTML = "<p><h2>Incorrect Email or Password!!</h2></p>";
       }
     })
     
   }
-  error(message: string) {
-    return throwError({ error: { message } });
-}
+  
   goBack(){
     this._httpService.goBack();
   }
