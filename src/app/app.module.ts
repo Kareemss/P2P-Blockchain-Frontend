@@ -14,6 +14,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landingPage/landingPage.component';
 import { MarketPageComponent } from './marketPage/marketPage.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MarketPageComponent } from './marketPage/marketPage.component';
     MainPageComponent,
     LoginComponent,
     LandingPageComponent,
-    MarketPageComponent
+    MarketPageComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

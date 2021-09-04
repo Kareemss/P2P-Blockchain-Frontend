@@ -19,6 +19,7 @@ export class LandingPageComponent implements OnInit{
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
+        
     }
 
     toBlockChainPage(){

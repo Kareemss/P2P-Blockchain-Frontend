@@ -47,6 +47,7 @@ export class HttpService {
     return this.http.post(this._url4, body)
   }
 
+
   /* Create user in userprofile tab */
   addUserProfile(user: User): Observable<any>{
     //const headers = { 'content-type': 'application/json'}  

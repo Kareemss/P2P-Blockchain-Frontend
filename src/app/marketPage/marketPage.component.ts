@@ -23,6 +23,7 @@ export class MarketPageComponent implements OnInit{
     getMarket(){
         this._httpService.getMarket().subscribe(data => this.market = data);
         this.toDisplay = true;
+        
     }
 
     /** Show all sellers when "buy" is clicked */
@@ -108,7 +109,7 @@ export class MarketPageComponent implements OnInit{
 
     ngAfterViewInit(){
         // call the get blockchain meh=thod when page is loaded
-        this.getMarket();
+        // this.showSellers()
       }
 
 
@@ -122,5 +123,7 @@ export class MarketPageComponent implements OnInit{
         this.router.navigate(['../signup'],{relativeTo: this.route});
     }
     
-    
+    toBlockChainPage(){
+        this.router.navigate(['../blockchain'],{relativeTo: this.route});
+    }
 }
