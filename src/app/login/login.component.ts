@@ -38,6 +38,19 @@ export class LoginComponent implements OnInit {
       if (data.Res == true){
         this.router.navigate(['../landingPage'],{relativeTo: this.route});
         this.createSessionToken(data.Email, data.PasswordHash)
+        var sa= localStorage.getItem('session-token')
+        console.log(sa)
+        // let ss= JSON.parse(localStorage.getItem("session-token"))
+        // console.log(ss)
+        // let st= JSON.parse(ss)
+        // console.log(st)
+        // let str1 = st.split("userEmail")
+        // console.log(str1)
+        // console.log(this.decryptUsingAES256(st.userEmail))
+        // console.log(this.decryptUsingAES256(st.userPassword))
+
+        // this.decryptUsingAES256(st.userEmail)
+        // console.log()
       }
       else {
         document.getElementById("error")!.innerHTML = "<p><h2>Incorrect Email or Password!!</h2></p>";
@@ -55,7 +68,6 @@ export class LoginComponent implements OnInit {
     // store cookie in local storage
     localStorage.setItem("session-token", JSON.stringify(token))
 
-    //JSON.parse(localStorage.getItem("session-token"));
     
   }
 
@@ -72,15 +84,16 @@ export class LoginComponent implements OnInit {
   }
 
     
-  decryptUsingAES256(decString: string) {
+  decryptUsingAES256(decString: string){
     var decrypted = CryptoJS.AES.decrypt(decString, this.key, {
         keySize: 128 / 8,
         iv: this.iv,
-        mode: CryptoJS.mode.CBC,
+        mode: CryptoJS.mode.CBC,                       
         padding: CryptoJS.pad.Pkcs7
     });
-    //console.log('Decrypted : ' + decrypted);
+    console.log('Decrypted : ' + decrypted);
     console.log('Decrypted = ' + decrypted.toString(CryptoJS.enc.Utf8));
+    // return decrypted.toString(CryptoJS.enc.Utf8);
   }
   
 
