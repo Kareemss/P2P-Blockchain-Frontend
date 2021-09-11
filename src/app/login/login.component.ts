@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../block';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { throwError } from 'rxjs';
 //Inside imports of your TS file include 
 import * as CryptoJS from 'crypto-js';
 

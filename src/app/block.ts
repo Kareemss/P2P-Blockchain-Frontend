@@ -34,3 +34,10 @@ export class User{
     SmartMeterNumber!: number
     PasswordHash!: string   
 }
+export class DeleteQuery{
+    Database!:     string
+	Collection!:   string
+	Query!:        string
+	Condition!:   any
+	DeletionType!: number
+}
