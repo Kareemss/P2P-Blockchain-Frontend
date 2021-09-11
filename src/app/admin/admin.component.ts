@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '../http.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DeleteQuery } from '../block';
+import { DeleteQuery, UpdateBalanceQuery } from '../block';
 import { HtmlAstPath } from '@angular/compiler';
 
 
@@ -13,6 +13,7 @@ import { HtmlAstPath } from '@angular/compiler';
 })
 export class AdminComponent implements OnInit {
   DeletionQuery = new DeleteQuery();
+  UpdateBalanceQuery = new UpdateBalanceQuery();
   constructor(private _http: HttpClientModule, private _httpService: HttpService, private route:ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
@@ -33,5 +34,16 @@ export class AdminComponent implements OnInit {
       console.log(data)
     })
   }
+  UpdateBalance(){
+    var select = document.getElementById('UpdateType') as HTMLSelectElement;
+    var value = select.options[select.selectedIndex].value;
+    this.UpdateBalanceQuery.Asset = value
+    this.UpdateBalanceQuery.Balance = +this.UpdateBalanceQuery.Balance
+    this._httpService.AddBalance(this.UpdateBalanceQuery)
+    .subscribe(data=>{
+        console.log(this.UpdateBalanceQuery)
+        console.log(data)
+    })
+}
   
 }

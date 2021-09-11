@@ -32,7 +32,9 @@ export class User{
     Email!: string
     UserName!: string
     SmartMeterNumber!: number
-    PasswordHash!: string   
+    PasswordHash!: string
+    EnergyBalance!: number
+    CurrencyBalance!: number   
 }
 export class DeleteQuery{
     Database!:     string
@@ -40,4 +42,9 @@ export class DeleteQuery{
 	Query!:        string
 	Condition!:   any
 	DeletionType!: number
+}
+export class UpdateBalanceQuery{
+	Email!:   string
+	Asset!:   string
+	Balance!: number
 }

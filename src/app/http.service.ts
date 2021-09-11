@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { blockInterface, Data, User, dataInterface, DeleteQuery } from './block';
+import { blockInterface, Data, User, dataInterface, DeleteQuery, UpdateBalanceQuery } from './block';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class HttpService {
   private _url5: string = "http://localhost:8080/Market";
   
   private _url6: string = "http://localhost:8080/Delete";
-
+  private _url7: string = "http://localhost:8080/AddBalance";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }
@@ -54,6 +54,14 @@ export class HttpService {
     //const body=JSON.parse(JSON.stringify(block));
     console.log(body)
     return this.http.post(this._url6, body)
+  }
+
+  AddBalance(UpdateBalanceP: UpdateBalanceQuery): Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(UpdateBalanceP);
+    //const body=JSON.parse(JSON.stringify(block));
+    console.log(body)
+    return this.http.post(this._url7, body)
   }
 
 

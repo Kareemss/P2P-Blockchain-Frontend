@@ -12,10 +12,27 @@
       <select id="DeletionType">
         <option value=1 selected>Delete Document(s)</option>
         <option value=2>Delete Collection</option>
-        
       </select>
       <div>
       <button (click)="DeleteObject()" class="button">Submit</button>
+      </div>
+        
+      
+  
+  </div>
+
+  <div class="w3-container">
+    <hr>
+    <div class="w3-center">
+      <h2>Update User Balance</h2>
+      <input type="text" name="Email" placeholder="Email" [(ngModel)]="UpdateBalanceQuery.Email">
+      <input type="text" name="Balance" placeholder="Balance Addition/Deduction" [(ngModel)]="UpdateBalanceQuery.Balance">
+      <select id="UpdateType">
+        <option value="energy-balance" selected>Eenergy Balance </option>
+        <option value="currency-balance">Currency Balance</option>
+      </select>
+      <div>
+      <button (click)="UpdateBalance()" class="button">Submit</button>
       </div>
         
       
