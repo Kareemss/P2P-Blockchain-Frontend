@@ -21,6 +21,7 @@ export class HttpService {
   
   private _url6: string = "http://localhost:8080/Delete";
   private _url7: string = "http://localhost:8080/AddBalance";
+  private _url8: string = "http://localhost:8080/GetUSer";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }

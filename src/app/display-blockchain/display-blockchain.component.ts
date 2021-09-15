@@ -23,7 +23,7 @@ export class DisplayBlockchainComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    // call the get blockchain meh=thod when page is loaded
+    // call the get blockchain method when page is loaded
     this.getBlockchain();
   }
 
