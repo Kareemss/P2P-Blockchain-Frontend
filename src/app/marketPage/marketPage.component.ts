@@ -12,6 +12,7 @@ import { HttpService } from '../http.service';
 export class MarketPageComponent implements OnInit{
 
     market: dataInterface[] = [];
+    IsFetched= false;
     toDisplay:boolean = false;
     constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
 
@@ -21,7 +22,10 @@ export class MarketPageComponent implements OnInit{
     }
 
     getMarket(){
-        this._httpService.getMarket().subscribe(data => this.market = data);
+        this._httpService.getMarket().subscribe(data => {
+            this.market = data;
+            this.IsFetched = true;
+            });
         this.toDisplay = true;
         
     }

@@ -4,3 +4,6 @@
     align-items: center;
     cursor: pointer;
   }
+  .focused {
+    background-color: red !important;
+  }

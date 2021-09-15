@@ -51,8 +51,8 @@
 <div class="w3-container">
     <div class="row">
         <div class="col-12">
-            <button class="w3-button w3-black w3-padding-small w3-margin-right" (click)=showSellers()>Buy</button>
-            <button class="w3-button w3-black w3-padding-small" (click)=showBuyers()>Sell</button>
+            <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small w3-margin-right" (click)=showSellers()>Buy</button>
+            <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small" (click)=showBuyers()>Sell</button>
         </div>
     </div>
 
