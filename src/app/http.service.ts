@@ -40,10 +40,19 @@ export class HttpService {
     return this.http.get<dataInterface[]>(this._url5);
   }
 
-  /* Do transaction in transaction tab */
-  AddTransaction(block: Data): Observable<any>{
+  getUser(User : User):Observable<any>{
     const headers = { 'content-type': 'application/json'}  
-    const body=JSON.stringify(block);
+    const body=JSON.stringify(User);
+    //const body=JSON.parse(JSON.stringify(block));
+    console.log(body)
+    return this.http.post(this._url8, body)
+    
+  }
+
+  /* Do transaction in transaction tab */
+  AddOrder(Order: Data): Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(Order);
     //const body=JSON.parse(JSON.stringify(block));
     console.log(body)
     return this.http.post(this._url4, body)
@@ -76,6 +85,11 @@ export class HttpService {
 
   }
 
+  AddTransaction(Block:Data): Observable<any>{
+    const body = JSON.stringify(Block);
+    console.log(body)
+    return this.http.post(this._url1, body)
+  }
 
   /* Login user in login tab */
   loginUser(user: User): Observable<any>{

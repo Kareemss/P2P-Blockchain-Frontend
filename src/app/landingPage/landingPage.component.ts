@@ -44,7 +44,7 @@ export class LandingPageComponent implements OnInit{
         this._httpService.goBack();
     }
     AddTransaction(){
-        this._httpService.AddTransaction(this.block).subscribe(data=>{
+        this._httpService.AddOrder(this.block).subscribe(data=>{
             console.log(data)
         })
     }

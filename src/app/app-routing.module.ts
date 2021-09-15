@@ -10,7 +10,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/mainpage/landingPage',pathMatch:'full'},
+  {path:'',redirectTo:'/mainpage',pathMatch:'full'},
   {path:'mainpage',component: MainPageComponent},  
   {path:'mainpage/blockchain',component:DisplayBlockchainComponent},
   
