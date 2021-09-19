@@ -21,7 +21,7 @@ export class HttpService {
   
   private _url6: string = "http://localhost:8080/Delete";
   private _url7: string = "http://localhost:8080/AddBalance";
-  private _url8: string = "http://localhost:8080/GetUSer";
+  private _url8: string = "http://localhost:8080/GetUser";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }
@@ -41,7 +41,7 @@ export class HttpService {
   }
 
   getUser(User : User):Observable<any>{
-    const headers = { 'content-type': 'application/json'}  
+    // const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(User);
     //const body=JSON.parse(JSON.stringify(block));
     console.log(body)

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { blockInterface } from '../block';
+import { blockInterface, User } from '../block';
 import { Data, dataInterface } from '../block';
 import { HttpService } from '../http.service';
 import { ThisReceiver } from '@angular/compiler';
@@ -16,7 +16,9 @@ import { SlicePipe } from '@angular/common';
     styleUrls: ['./landingPage.component.css']
 })
 export class LandingPageComponent implements OnInit{
-    block = new Data()
+  IsFetched= false;
+  user = new User()
+  block = new Data()
     // Declare this key and iv values in declaration
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)
@@ -24,12 +26,14 @@ export class LandingPageComponent implements OnInit{
     constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) { }
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
+    
     ngOnInit(): void{
-      
+      this.getEncryptedSessionToken()
+        console.log(this.user)
     }
 
     ngAfterViewInit(){
-        this.getEncryptedSessionToken()
+        
       }
 
     toBlockChainPage(){
@@ -43,16 +47,30 @@ export class LandingPageComponent implements OnInit{
     goBack(){
         this._httpService.goBack();
     }
-    AddTransaction(){
+    AddSellOrder(){
+      this.block.Seller=this.user.UserName;
         this._httpService.AddOrder(this.block).subscribe(data=>{
             console.log(data)
         })
+    }
+    AddBuyOrder(){
+      this.block.Buyer=this.user.UserName;
+      this._httpService.AddOrder(this.block).subscribe(data=>{
+          console.log(data)
+      })
     }
     goLogin(){
         this.router.navigate(['../login'],{relativeTo: this.route});
       }
     goSignUp(){
         this.router.navigate(['../signup'],{relativeTo: this.route});
+    }
+
+    GetUser(){
+        this._httpService.getUser(this.user).subscribe(data =>{
+          this.user=data;
+          this.IsFetched= true;
+        })
     }
 
     getEncryptedSessionToken(){
@@ -88,7 +106,11 @@ export class LandingPageComponent implements OnInit{
         console.log("Decrypted email: ", decEmail)
         console.log("Encrypted password hash: ", encPass)
         console.log("Decrypted password hash: ", decPass)
-        document.getElementById("userId")!.innerHTML = decEmail.slice(1, (decEmail.length-1));
+        this.user.Email=decEmail.slice(1, (decEmail.length-1));
+        this.GetUser()
+        console.log(this.user)
+        console.log(this.user.UserName)
+        document.getElementById("userId")!.innerHTML = this.user.UserName;
       }
 
       decryptUsingAES256(decString: string){

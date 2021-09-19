@@ -35,7 +35,7 @@
       <button id="login"  class="w3-bar-item w3-button w3-padding-large w3-hide-small" 
       (click)=goSignUp() hidden=true>Sign Up</button>
 
-      <span id="userId" class=" w3-padding-large w3-right" >hey</span>
+      <span id="userId"  class=" w3-padding-large w3-right">hey</span>
     </div>
     
   </div>
@@ -94,13 +94,11 @@
       <div class="w3-container">
         
         
-        <p><label><i class="fa fa-user"></i> Buyer</label>
+        <!-- <p><label><i class="fa fa-user"></i> Buyer</label>
           <input class="w3-input w3-border" type="text" placeholder="" [(ngModel)]="block.Buyer">
-        </p>
+        </p> -->
 
-        <!-- <p><label><i class="fa fa-user"></i>Seller</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
-        </p>  -->
+        <h1>{{ user.UserName }}</h1>
 
         <p><label><i class="fa fa-user"></i>Amount</label>
           <input class="w3-input w3-border" type="number" min="0" 
@@ -111,11 +109,11 @@
         <p><label><i class="fa fa-user"></i>Price</label>
           <input class="w3-input w3-border" type="number" min="0" 
           value="0" step="0.01"
-          placeholder="Price ($)" [(ngModel)]="block.Price">
+          placeholder="Price per KWh ($)" [(ngModel)]="block.Price">
         </p>
 
        
-        <button (click)="AddTransaction()" 
+        <button (click)="AddBuyOrder()" 
         class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">
         BUY <i class="fa fa-check"></i></button>
       </div>
@@ -137,9 +135,9 @@
           <input class="w3-input w3-border" type="text" placeholder="">
         </p> -->
 
-        <p><label><i class="fa fa-user"></i>Seller</label>
+        <!-- <p><label><i class="fa fa-user"></i>Seller</label>
           <input class="w3-input w3-border" type="text" placeholder="" [(ngModel)]="block.Seller">
-        </p> 
+        </p>  -->
 
         <p><label><i class="fa fa-user"></i>Amount</label>
           <input class="w3-input w3-border" type="number" min="0" 
@@ -150,11 +148,11 @@
         <p><label><i class="fa fa-user"></i>Price</label>
           <input class="w3-input w3-border" type="number" min="0" 
           value="0" step="0.01"
-          placeholder="Price ($)" [(ngModel)]="block.Price">
+          placeholder="Price per KWh ($)" [(ngModel)]="block.Price">
         </p>
 
     
-        <button (click)="AddTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
+        <button (click)="AddSellOrder()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
           SELL <i class="fa fa-check"></i></button>
         
       </div>

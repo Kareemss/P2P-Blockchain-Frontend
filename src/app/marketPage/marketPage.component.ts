@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { dataInterface } from '../block';
+import { Data, dataInterface } from '../block';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 
@@ -10,7 +10,7 @@ import { HttpService } from '../http.service';
     styleUrls: ['./marketPage.component.css']
 })
 export class MarketPageComponent implements OnInit{
-
+    block = new Data()
     market: dataInterface[] = [];
     IsFetched= false;
     toDisplay:boolean = false;
@@ -52,11 +52,12 @@ export class MarketPageComponent implements OnInit{
                 
                 htmlStr += "<div class='col-4'>"
                 htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
-                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' (click)=''>Buy</button>";
+                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('sellModal').style.display='block'\">Buy</button>";
                 htmlStr += "</div>";
                 
                 htmlStr += "</div>";
                 htmlStr += "</div>";
+                // onclick=\"document.getElementById('sellModal').style.display='block'\"
             }
 
 
@@ -116,7 +117,11 @@ export class MarketPageComponent implements OnInit{
         // this.showSellers()
       }
 
-
+    AddTransaction(){
+        this._httpService.AddTransaction(this.block).subscribe(data=>{
+            console.log(data)
+        })
+    }
     goBack(){
         this._httpService.goBack();
     }
