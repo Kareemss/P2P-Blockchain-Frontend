@@ -34,7 +34,8 @@ export class User{
     SmartMeterNumber!: number
     PasswordHash!: string
     EnergyBalance!: number
-    CurrencyBalance!: number   
+    CurrencyBalance!: number 
+    CompletedTransaction!: number  
 }
 export class DeleteQuery{
     Database!:     string
