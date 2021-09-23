@@ -18,7 +18,7 @@ export class MarketPageComponent implements OnInit{
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
-        this.getMarket();
+        this.getMarket();       
     }
 
     getMarket(){
@@ -34,6 +34,7 @@ export class MarketPageComponent implements OnInit{
     showSellers(){
         let htmlStr = ""
         let sellerCount = 0
+        this.sortOrdersByPriceAscending()
         for(let i=0; i<this.market.length; i++){
             let marketData = this.market[i]
             let seller = marketData.Seller
@@ -75,6 +76,7 @@ export class MarketPageComponent implements OnInit{
         document.getElementById("showMarketDetails")!.innerHTML = "";
         let htmlStr = ""
         let buyerCount = 0
+        this.sortOrdersByPriceDescending()
         for(let i=0; i<this.market.length; i++){
             let marketData = this.market[i]
             let buyer = marketData.Buyer
@@ -111,6 +113,19 @@ export class MarketPageComponent implements OnInit{
         
     }
 
+    sortOrdersByPriceDescending(){
+        let sortedMarket = this.market.sort((a, b) => (a.Price > b.Price ? -1 : 1));
+        // assign the sorted market array to the market attribute
+        this.market = sortedMarket
+        return this.market;
+    }
+
+    sortOrdersByPriceAscending(){
+        let sortedMarket = this.market.sort((a, b) => (a.Price < b.Price ? -1 : 1));
+        // assign the sorted market array to the market attribute
+        this.market = sortedMarket
+        return this.market;
+    }
 
     ngAfterViewInit(){
         // call the get blockchain meh=thod when page is loaded
