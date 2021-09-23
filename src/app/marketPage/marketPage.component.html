@@ -30,6 +30,7 @@
       </div>
     </div>
     <div>
+      <span id="userId"  class=" w3-padding-large w3-right"></span>
       <!-- <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goLogin()>Log In</button>
       <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goSignUp()>Sign Up</button> -->
     </div>
@@ -66,42 +67,63 @@
         </div>
     </div>
   
-    <div id="sellModal" class="w3-modal">
-      <div class="w3-modal-content w3-animate-top w3-card-4">
-        <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
-          <span onclick="document.getElementById('sellModal').style.display='none'" 
-         class="w3-button w3-dark-gray w3-xlarge w3-display-topright">&times;</span>
-          <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>SELL</h2>
-        </header>
-        <div class="w3-container">
-  
-           <p><label><i class="fa fa-user"></i> Buyer</label>
-            <input class="w3-input w3-border" type="text" placeholder="">
-          </p>
-  
-          <p><label><i class="fa fa-user"></i>Seller</label>
-            <input class="w3-input w3-border" type="text" placeholder="" [(ngModel)]="block.Seller">
-          </p> 
-  
-          <p><label><i class="fa fa-user"></i>Amount</label>
-            <input class="w3-input w3-border" type="number" min="0" 
-            value="0" step="0.01" 
-            placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
-          </p>
-  
-          <p><label><i class="fa fa-user"></i>Price</label>
-            <input class="w3-input w3-border" type="number" min="0" 
-            value="0" step="0.01"
-            placeholder="Price ($)" [(ngModel)]="block.Price">
-          </p> -->
-  
-      
-          <button (click)="AddTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
-            SELL <i class="fa fa-check"></i></button>
-          
-        </div>
+    <!--  Buy Energy Modal -->
+  <div id="buyModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('buyModal').style.display='none'" 
+       class="w3-button w3-dark-gray w3-xlarge w3-display-topright">&times;</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>BUY</h2>
+      </header>
+      <div class="w3-container">
+        
+        
+        <h1>{{ user.UserName}}</h1>
+
+        <!-- <p><label><i class="fa fa-user"></i>Seller</label>
+          <input class="w3-input w3-border" type="text" placeholder="">
+        </p>  -->
+
+        <p><label><i class="fa fa-user"></i>Amount</label>
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01" 
+          placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
+        </p>
+
+       
+        <button (click)="AddBuyTransaction()" 
+        class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">
+        BUY <i class="fa fa-check"></i></button>
       </div>
     </div>
+  </div>
+
+
+  <!--  Sell Energy Modal -->
+  <div id="sellModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('sellModal').style.display='none'" 
+       class="w3-button w3-dark-gray w3-xlarge w3-display-topright">&times;</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>SELL</h2>
+      </header>
+      <div class="w3-container">
+
+        <h1>{{ user.UserName}}</h1>
+
+        <p><label><i class="fa fa-user"></i>Amount</label>
+          <input class="w3-input w3-border" type="number" min="0" 
+          value="0" step="0.01" 
+          placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
+        </p>
+
+    
+        <button (click)="AddSellTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
+          SELL <i class="fa fa-check"></i></button>
+        
+      </div>
+    </div>
+  </div>
   
 </div>
 <!-- <hr> -->

@@ -1,8 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Data, dataInterface } from '../block';
+import { Data, dataInterface, User } from '../block';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-
+import * as CryptoJS from 'crypto-js';
+import { SlicePipe } from '@angular/common';
 
 @Component({
     selector:'app-marketPage',
@@ -10,25 +11,34 @@ import { HttpService } from '../http.service';
     styleUrls: ['./marketPage.component.css']
 })
 export class MarketPageComponent implements OnInit{
-    block = new Data()
+    block = new Data();
     market: dataInterface[] = [];
     IsFetched= false;
-    toDisplay:boolean = false;
+    user = new User();
+    // Declare this key and iv values in declaration
+  private key = CryptoJS.enc.Utf8.parse('4512631236589784');
+  //console.log(key)
+  private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
     constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
-        this.getMarket();       
-    }
-
-    getMarket(){
-        this._httpService.getMarket().subscribe(data => {
+        this.getEncryptedSessionToken();
+        
+        this._httpService.getUser(this.user).subscribe(data =>{
+            this.user=data;
+            document.getElementById("userId")!.innerHTML = this.user.UserName;
+        });
+          this._httpService.getMarket().subscribe(data => {
             this.market = data;
             this.IsFetched = true;
-            });
-        this.toDisplay = true;
-        
+        }); 
     }
+
+    
+        
+        
+    
 
     /** Show all sellers when "buy" is clicked */
     showSellers(){
@@ -53,7 +63,7 @@ export class MarketPageComponent implements OnInit{
                 
                 htmlStr += "<div class='col-4'>"
                 htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
-                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('sellModal').style.display='block'\">Buy</button>";
+                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('buyModal').style.display='block'\">Buy</button>";
                 htmlStr += "</div>";
                 
                 htmlStr += "</div>";
@@ -95,7 +105,7 @@ export class MarketPageComponent implements OnInit{
                 
                 htmlStr += "<div class='col-4'>"
                 htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
-                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' (click)=''>Sell</button>";
+                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('sellModal').style.display='block'\">Sell</button>";
                 htmlStr += "</div>";
                 
                 htmlStr += "</div>";
@@ -127,12 +137,15 @@ export class MarketPageComponent implements OnInit{
         return this.market;
     }
 
-    ngAfterViewInit(){
-        // call the get blockchain meh=thod when page is loaded
-        // this.showSellers()
-      }
+    AddSellTransaction(){
+        this.block.Seller=this.user.UserName;
+        this._httpService.AddTransaction(this.block).subscribe(data=>{
+            console.log(data)
+        })
+    }
 
-    AddTransaction(){
+    AddBuyTransaction(){
+        this.block.Buyer=this.user.UserName;
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
         })
@@ -150,4 +163,56 @@ export class MarketPageComponent implements OnInit{
     toBlockChainPage(){
         this.router.navigate(['../blockchain'],{relativeTo: this.route});
     }
+
+    getEncryptedSessionToken(){
+        // get encrypted session token as a string 
+        let tknStr = localStorage.getItem("session-token")
+        console.log("Retrieved session token")
+        console.log(tknStr)
+        // split the string in two parts, userEmail and userPassword
+        let tknArr = tknStr?.split(",")
+        //console.log(tknArr)
+
+        // retrieve session token if not undefined
+        if (tknArr != undefined){
+          this.retrieveSessionToken(tknArr)
+        }
+    }
+
+    retrieveSessionToken(tknArr : string[]){
+        // split the token array into two separate parts
+        let uEmailArr = tknArr[0].split('\"')
+        let uPassArr = tknArr[1].split('\"')
+    
+        // encrypted value at index 3 for both email and password
+        let encEmail = uEmailArr[3]
+        let encPass = uPassArr[3]
+        
+        // decrypt the email and password
+        let decEmail = this.decryptUsingAES256(encEmail)
+        let decPass = this.decryptUsingAES256(encPass)
+    
+        
+        console.log("Encrypted email: ", encEmail)
+        console.log("Decrypted email: ", decEmail)
+        console.log("Encrypted password hash: ", encPass)
+        console.log("Decrypted password hash: ", decPass)
+        this.user.Email=decEmail.slice(1, (decEmail.length-1));
+        
+        // console.log(this.user)
+        // console.log(this.user.UserName)
+        
+      }
+
+      decryptUsingAES256(decString: string){
+        var decrypted = CryptoJS.AES.decrypt(decString, this.key, {
+            keySize: 128 / 8,
+            iv: this.iv,
+            mode: CryptoJS.mode.CBC,                       
+            padding: CryptoJS.pad.Pkcs7
+        });
+        //console.log('Decrypted : ' + decrypted);
+        //console.log('Decrypted = ' + decrypted.toString(CryptoJS.enc.Utf8));
+        return decrypted.toString(CryptoJS.enc.Utf8);
+      }
 }
