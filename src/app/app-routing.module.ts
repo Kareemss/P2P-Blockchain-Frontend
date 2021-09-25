@@ -8,6 +8,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProfilePageComponent } from './profilePage/ProfilePage.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/mainpage',pathMatch:'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'mainpage/login',component:LoginComponent},
   {path:'mainpage/landingPage',component:LandingPageComponent},
   {path:'mainpage/market',component:MarketPageComponent},
-  {path:'admin',component:AdminComponent}
+  {path:'admin',component:AdminComponent},
+  {path: 'mainpage/profilePage', component: ProfilePageComponent}
 ];
 
 // const routes: Routes = [
@@ -39,4 +41,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [MainPageComponent,DisplayBlockchainComponent,UserProfileComponent,LoginComponent,LandingPageComponent];
+export const routingComponents = [MainPageComponent,DisplayBlockchainComponent,UserProfileComponent,LoginComponent,LandingPageComponent, ProfilePageComponent];

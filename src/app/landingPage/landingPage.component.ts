@@ -51,9 +51,14 @@ export class LandingPageComponent implements OnInit{
         this.router.navigate(['../market'],{relativeTo: this.route});
     }
 
+    toProfilePage(){
+      this.router.navigate(['../profilePage'], {relativeTo: this.route});
+    }
+
     goBack(){
         this._httpService.goBack();
     }
+
 
     AddSellOrder(){
       this.block.Seller=this.user.UserName;
