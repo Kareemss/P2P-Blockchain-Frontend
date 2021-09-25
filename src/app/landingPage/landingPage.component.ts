@@ -33,7 +33,9 @@ export class LandingPageComponent implements OnInit{
       this._httpService.getUser(this.user).subscribe(data =>{
         this.user=data;
         document.getElementById("userId")!.innerHTML = this.user.UserName;
+        console.log(this.user.UserName)
       })
+      
     }
 
     
