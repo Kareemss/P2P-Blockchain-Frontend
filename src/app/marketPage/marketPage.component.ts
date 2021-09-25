@@ -1,9 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Data, dataInterface, User } from '../block';
+import { Order, dataInterface, User } from '../block';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import * as CryptoJS from 'crypto-js';
-import { SlicePipe } from '@angular/common';
 
 @Component({
     selector:'app-marketPage',
@@ -11,10 +10,15 @@ import { SlicePipe } from '@angular/common';
     styleUrls: ['./marketPage.component.css']
 })
 export class MarketPageComponent implements OnInit{
-    block = new Data();
-    market: dataInterface[] = [];
+    block = new Order();
+    CurrentOrder= new Order();
+    sellorders: Order[] = [];
+    buyorders: Order[] = [];
+    allorders: Order[] = [];
     IsFetched= false;
     user = new User();
+    Showsell = false;
+    Showbuy = false;
     // Declare this key and iv values in declaration
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)
@@ -25,120 +29,59 @@ export class MarketPageComponent implements OnInit{
     ngOnInit(): void{
         this.getEncryptedSessionToken();
         
-        this._httpService.getUser(this.user).subscribe(data =>{
-            this.user=data;
-            document.getElementById("userId")!.innerHTML = this.user.UserName;
-        });
-          this._httpService.getMarket().subscribe(data => {
-            this.market = data;
+        this._httpService.getMarket().subscribe(data =>{
+            this.allorders = data;
+            this.sellorders = this.allorders.filter(
+                order => order.Seller !=""
+            );
+            this.sellorders = this.sellorders.sort((a, b) => (
+                a.Price < b.Price ? -1 : 1));
+            console.log(this.sellorders)
+            this.buyorders = this.allorders.filter(
+                order => order.Buyer !=""
+            );
+            this.buyorders = this.buyorders.sort((a, b) => (
+                a.Price > b.Price ? -1 : 1));
+            console.log(this.buyorders)
             this.IsFetched = true;
         }); 
+
+        this._httpService.getUser(this.user).subscribe(data =>{
+            this.user=data;
+            console.log(data)
+            document.getElementById("userId")!.innerHTML = this.user.UserName;
+        });
+        
+    } 
+    ShowBuy(){
+        this.Showbuy=true;
+        this.Showsell=false;
+        console.log("showing buyers")
+    }
+    ShowSell(){
+        this.Showbuy=false;
+        this.Showsell=true;
+        console.log("showing sellers")
     }
 
+    PressBuy(Order: Order){
+        this.CurrentOrder=Order
+        document.getElementById('buyModal')!.style.display='block'
+        console.log(this.CurrentOrder)
+    }
     
-        
-        
-    
-
-    /** Show all sellers when "buy" is clicked */
-    showSellers(){
-        let htmlStr = ""
-        let sellerCount = 0
-        this.sortOrdersByPriceAscending()
-        for(let i=0; i<this.market.length; i++){
-            let marketData = this.market[i]
-            let seller = marketData.Seller
-            if (seller != ""){
-                sellerCount += 1
-                htmlStr += "<div class='w3-card-4 w3-margin w3-padding'>"
-                htmlStr += "<div class='row'>"
-                
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Seller: " + seller +"</p>"
-                htmlStr += "</div>";
-
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Price: " + marketData.Price +"</p>"
-                htmlStr += "</div>";
-                
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
-                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('buyModal').style.display='block'\">Buy</button>";
-                htmlStr += "</div>";
-                
-                htmlStr += "</div>";
-                htmlStr += "</div>";
-                // onclick=\"document.getElementById('sellModal').style.display='block'\"
-            }
-
-
-        }
-        if(sellerCount == 0){
-            document.getElementById("showMarketDetails")!.innerHTML = "<p><h2>No Sellers Yet !!</h2></p>";
-        }
-        else{
-            document.getElementById("showMarketDetails")!.innerHTML = htmlStr;
-        }
-    }
-
-    /** Show all sellers when "buy" is clicked */
-    showBuyers(){
-        document.getElementById("showMarketDetails")!.innerHTML = "";
-        let htmlStr = ""
-        let buyerCount = 0
-        this.sortOrdersByPriceDescending()
-        for(let i=0; i<this.market.length; i++){
-            let marketData = this.market[i]
-            let buyer = marketData.Buyer
-            if (buyer != ""){
-                buyerCount += 1
-                htmlStr += "<div class='w3-card-4 w3-margin w3-padding'>"
-                htmlStr += "<div class='row'>"
-                
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Buyer: " + buyer +"</p>"
-                htmlStr += "</div>";
-
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Price: " + marketData.Price +"</p>"
-                htmlStr += "</div>";
-                
-                htmlStr += "<div class='col-4'>"
-                htmlStr += "<p> Amount: " + marketData.Amount +"</p>"
-                htmlStr += "<button class='w3-button w3-black w3-padding-small w3-margin-right' onclick=\"document.getElementById('sellModal').style.display='block'\">Sell</button>";
-                htmlStr += "</div>";
-                
-                htmlStr += "</div>";
-                htmlStr += "</div>";
-            }
-
-
-        }
-        if(buyerCount == 0){
-            document.getElementById("showMarketDetails")!.innerHTML = "<p><h2>No Buyers Yet !!</h2></p>";
-        }
-        else{
-            document.getElementById("showMarketDetails")!.innerHTML = htmlStr;
-        }
-        
-    }
-
-    sortOrdersByPriceDescending(){
-        let sortedMarket = this.market.sort((a, b) => (a.Price > b.Price ? -1 : 1));
-        // assign the sorted market array to the market attribute
-        this.market = sortedMarket
-        return this.market;
-    }
-
-    sortOrdersByPriceAscending(){
-        let sortedMarket = this.market.sort((a, b) => (a.Price < b.Price ? -1 : 1));
-        // assign the sorted market array to the market attribute
-        this.market = sortedMarket
-        return this.market;
+    PressSell(Order: Order){
+        this.CurrentOrder=Order
+        document.getElementById('sellModal')!.style.display='block'
+        console.log(this.CurrentOrder)
     }
 
     AddSellTransaction(){
         this.block.Seller=this.user.UserName;
+        this.block.Buyer=this.CurrentOrder.Buyer;
+        this.block.Issuer=this.CurrentOrder.Issuer;
+        this.block.Price=this.CurrentOrder.Price;
+        console.log(this.block)
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
         })
@@ -146,6 +89,9 @@ export class MarketPageComponent implements OnInit{
 
     AddBuyTransaction(){
         this.block.Buyer=this.user.UserName;
+        this.block.Seller=this.CurrentOrder.Seller;
+        this.block.Issuer=this.CurrentOrder.Issuer;
+        this.block.Price=this.CurrentOrder.Price;
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
         })

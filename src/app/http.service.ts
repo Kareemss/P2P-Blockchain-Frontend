@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { blockInterface, Data, User, dataInterface, DeleteQuery, UpdateBalanceQuery } from './block';
+import { blockInterface, Order, User, dataInterface, DeleteQuery, UpdateBalanceQuery } from './block';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -36,8 +36,8 @@ export class HttpService {
   }
   
 
-  getMarket():Observable<dataInterface[]>{
-    return this.http.get<dataInterface[]>(this._url5);
+  getMarket():Observable<Order[]>{
+    return this.http.get<Order[]>(this._url5);
   }
 
   getUser(User : User):Observable<any>{
@@ -50,7 +50,7 @@ export class HttpService {
   }
 
   /* Do transaction in transaction tab */
-  AddOrder(Order: Data): Observable<any>{
+  AddOrder(Order: Order): Observable<any>{
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(Order);
     //const body=JSON.parse(JSON.stringify(block));
@@ -85,7 +85,7 @@ export class HttpService {
 
   }
 
-  AddTransaction(Block:Data): Observable<any>{
+  AddTransaction(Block:Order): Observable<any>{
     const body = JSON.stringify(Block);
     console.log(body)
     return this.http.post(this._url1, body)

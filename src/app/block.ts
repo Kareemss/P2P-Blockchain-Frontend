@@ -10,6 +10,7 @@ export interface blockInterface {
 
 
 export interface dataInterface {
+    OrderID: string,
     Isuuer: string,
     Seller: string,
     Buyer: string,
@@ -17,7 +18,8 @@ export interface dataInterface {
     Price: number
 }
 
-export class Data {
+export class Order {
+    OrderID!: string
     Issuer!: string
     Seller!: string
     Buyer!: string

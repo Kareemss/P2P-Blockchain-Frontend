@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { blockInterface, User } from '../block';
-import { Data, dataInterface } from '../block';
+import { Order, dataInterface } from '../block';
 import { HttpService } from '../http.service';
 import { ThisReceiver } from '@angular/compiler';
 import * as CryptoJS from 'crypto-js';
@@ -19,7 +19,7 @@ export class LandingPageComponent implements OnInit{
   IsFetched= true;
 
   user = new User();
-  block = new Data()
+  block = new Order()
     // Declare this key and iv values in declaration
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)

@@ -50,22 +50,68 @@
 
 <hr>
 <div class="w3-container">
-    <div class="row">
-        <div class="col-12">
-            <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small w3-margin-right" (click)=showSellers()>Buy</button>
-            <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small" (click)=showBuyers()>Sell</button>
-        </div>
-    </div>
+  <div class="row">
+      <div class="col-12">
+          <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small w3-margin-right" (click)="ShowSell()">Buy</button>
+          <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small" (click)="ShowBuy()">Sell</button>
+      </div>
+  </div>
 
-    <div class="row">
-        <div class="col-12">
-            <div 
-            id="showMarketDetails">
-            
-            
+  <div class="row">
+    <div class="col-12">
+      <div id="showMarketDetails">
+        <ng-container *ngIf="Showsell">
+          <div *ngFor="let order of sellorders">
+            <div class='w3-card-4 w3-margin w3-padding'>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    Seller: {{order.Seller}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Amount: {{order.Amount}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Price: {{order.Price}}
+                  </p>
+                </div>
+                <button class='w3-button w3-black w3-padding-small w3-margin-right' (click)="PressBuy(order)">Buy</button>
+              </div>
             </div>
-        </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="Showbuy">
+          <div *ngFor="let order of buyorders">
+            <div class='w3-card-4 w3-margin w3-padding'>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    Buyer: {{order.Buyer}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Amount: {{order.Amount}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Price: {{order.Price}}
+                  </p>
+                </div>
+                <button class='w3-button w3-black w3-padding-small w3-margin-right' (click)="PressSell(order)">Sell</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+          
+      </div>
     </div>
+  </div>
   
     <!--  Buy Energy Modal -->
   <div id="buyModal" class="w3-modal">
@@ -78,16 +124,23 @@
       <div class="w3-container">
         
         
-        <h1>{{ user.UserName}}</h1>
+        <h1>
+          <label><i class="fa fa-user"></i>Seller</label>
+          :{{CurrentOrder.Seller}}
+        </h1>
+        <p>
+          Available Amount To Buy: {{CurrentOrder.Amount}}KWh
+        </p>
+        <p>Price: {{CurrentOrder.Price}} $/KWh</p>
+        <p>Balance in wallet <i class="fa fa-money"></i>: {{ user.CurrencyBalance}}$</p>
 
-        <!-- <p><label><i class="fa fa-user"></i>Seller</label>
-          <input class="w3-input w3-border" type="text" placeholder="">
-        </p>  -->
-
-        <p><label><i class="fa fa-user"></i>Amount</label>
+        <p><label><i class="fa fa-bolt"></i>Amount</label>
           <input class="w3-input w3-border" type="number" min="0" 
           value="0" step="0.01" 
           placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
+        </p>
+        <p>
+          To Pay: {{block.Amount*CurrentOrder.Price}}$
         </p>
 
        
@@ -108,16 +161,24 @@
         <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>SELL</h2>
       </header>
       <div class="w3-container">
+        <h1>
+          <label><i class="fa fa-user"></i>Buyer</label>
+          :{{CurrentOrder.Buyer}}
+        </h1>
+        <p>
+          Amount Needed By Buyer: {{CurrentOrder.Amount}}KWh
+        </p>
+        <p>Price: {{CurrentOrder.Price}} $/KWh</p>
+        <p>Balance in wallet <i class="fa fa-bolt"></i>: {{ user.EnergyBalance}} KWh</p>
 
-        <h1>{{ user.UserName}}</h1>
-
-        <p><label><i class="fa fa-user"></i>Amount</label>
+        <p><label><i class="fa fa-bolt"></i>Amount</label>
           <input class="w3-input w3-border" type="number" min="0" 
           value="0" step="0.01" 
           placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
         </p>
-
-    
+        <p>
+          To Receive: {{block.Amount*CurrentOrder.Price}}$
+        </p>
         <button (click)="AddSellTransaction()" class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"> 
           SELL <i class="fa fa-check"></i></button>
         
