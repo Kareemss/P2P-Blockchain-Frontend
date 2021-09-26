@@ -32,12 +32,13 @@ export class ProfilePageComponent implements OnInit{
         this._httpService.getUser(this.user).subscribe(data =>{
           this.user=data;
           this.userpresent=true;
-        })  
-        this._httpService.getMarket().subscribe(data =>{
+          this._httpService.getMarket().subscribe(data =>{
             this.userorders = data.filter( order => order.Issuer == this.user.UserName);
             console.log(this.userorders)
             this.MarketFetched = true;
         }); 
+        })  
+        
         this._httpService.getBlockChain().subscribe(data =>{
             this.blocks = data.filter(block =>
                 block.AllData.Seller || block.AllData.Buyer ==this.user.UserName)
