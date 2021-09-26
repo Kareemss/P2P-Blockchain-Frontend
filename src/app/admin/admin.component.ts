@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from '../http.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DeleteQuery, UpdateBalanceQuery } from '../block';
+import { DeleteQuery, UpdateBalanceQuery, Order } from '../block';
 import { HtmlAstPath } from '@angular/compiler';
 
 
@@ -14,6 +14,7 @@ import { HtmlAstPath } from '@angular/compiler';
 export class AdminComponent implements OnInit {
   DeletionQuery = new DeleteQuery();
   UpdateBalanceQuery = new UpdateBalanceQuery();
+  block = new Order();
   constructor(private _http: HttpClientModule, private _httpService: HttpService, private route:ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
@@ -44,6 +45,21 @@ export class AdminComponent implements OnInit {
         console.log(this.UpdateBalanceQuery)
         console.log(data)
     })
-}
+  }
+  ShowModal(){
+    document.getElementById('buyModal')!.style.display='block'
+  }
+
+  AddOrder(){
+    if (this.block.Seller!=""){
+      this.block.Issuer=this.block.Seller;
+    } else{
+      this.block.Issuer=this.block.Buyer;
+    }
+    this._httpService.AddOrder(this.block).subscribe(data=>{
+        console.log(data)
+    })
+  
+  }
   
 }

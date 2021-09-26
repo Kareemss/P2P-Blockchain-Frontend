@@ -1,40 +1,77 @@
 <!DOCTYPE html>
-<p>admin works!</p>
+<html>
+<title>Market Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/cc6a5db783.js" crossorigin="anonymous"></script>
 
 <div class="w3-container">
-    <hr>
-    <div class="w3-center">
-      <h2>Delete</h2>
-      <input type="text" name="Database" placeholder="Database" [(ngModel)]="DeletionQuery.Database">
-      <input type="text" name="Collection" placeholder="Collection" [(ngModel)]="DeletionQuery.Collection">
-      <input type="text" name="Query" placeholder="Query" [(ngModel)]="DeletionQuery.Query"> 
-      <input type="text" name="Condition" placeholder="Condition" [(ngModel)]="DeletionQuery.Condition">
-      <select id="DeletionType">
-        <option value=1 selected>Delete Document(s)</option>
-        <option value=2>Delete Collection</option>
-      </select>
-      <div>
-      <button (click)="DeleteObject()" class="button">Submit</button>
-      </div>
-        
-      
-  
+  <div class="w3-center">
+    <h2>Delete</h2>
+    <input type="text" name="Database" placeholder="Database" [(ngModel)]="DeletionQuery.Database">
+    <input type="text" name="Collection" placeholder="Collection" [(ngModel)]="DeletionQuery.Collection">
+    <input type="text" name="Query" placeholder="Query" [(ngModel)]="DeletionQuery.Query"> 
+    <input type="text" name="Condition" placeholder="Condition" [(ngModel)]="DeletionQuery.Condition">
+    <select id="DeletionType">
+      <option value=1 selected>Delete Document(s)</option>
+      <option value=2>Delete Collection</option>
+    </select>
+    <button (click)="DeleteObject()" class="button">Submit</button>
   </div>
+</div>
 
-  <div class="w3-container">
-    <hr>
-    <div class="w3-center">
-      <h2>Update User Balance</h2>
-      <input type="text" name="Email" placeholder="Email" [(ngModel)]="UpdateBalanceQuery.Email">
-      <input type="text" name="Balance" placeholder="Balance Addition/Deduction" [(ngModel)]="UpdateBalanceQuery.Balance">
-      <select id="UpdateType">
-        <option value="energy-balance" selected>Eenergy Balance </option>
-        <option value="currency-balance">Currency Balance</option>
-      </select>
-      <div>
-      <button (click)="UpdateBalance()" class="button">Submit</button>
-      </div>
-        
-      
-  
+<div class="w3-container">
+  <div class="w3-center">
+    <h2>Update User Balance</h2>
+    <input type="text" name="Email" placeholder="Email" [(ngModel)]="UpdateBalanceQuery.Email">
+    <input type="text" name="Balance" placeholder="Balance Addition/Deduction" [(ngModel)]="UpdateBalanceQuery.Balance">
+    <select id="UpdateType">
+      <option value="energy-balance" selected>Eenergy Balance </option>
+      <option value="currency-balance">Currency Balance</option>
+    </select>
+    <button (click)="UpdateBalance()" class="button">Submit</button>
   </div>
+</div>
+<div class="w3-container">
+  <button (click)=ShowModal()>New Order</button>
+</div>
+<div id="buyModal" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
+      <span onclick="document.getElementById('buyModal').style.display='none'" 
+     class="w3-button w3-dark-gray w3-xlarge w3-display-topright">&times;</span>
+      <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Order</h2>
+    </header>
+    <div class="w3-container">
+      <p><label><i class="fa fa-user"></i>Seller</label>
+        <input class="w3-input w3-border" type="text" 
+        placeholder="Seller" [(ngModel)]="block.Seller">
+      </p>
+
+      <p><label><i class="fa fa-user"></i>Buyer</label>
+        <input class="w3-input w3-border" type="text" 
+        placeholder="Buyer" [(ngModel)]="block.Buyer">
+      </p>
+
+      <p><label><i class="fa fa-bolt"></i>Amount</label>
+        <input class="w3-input w3-border" type="number" min="0" 
+        value="0" step="0.01" 
+        placeholder="Amount of energy (KWh)" [(ngModel)]="block.Amount">
+      </p>
+
+      <p><label><i class="fa fa-money"></i>Price</label>
+        <input class="w3-input w3-border" type="number" min="0" 
+        value="0" step="0.01"
+        placeholder="Price ($)" [(ngModel)]="block.Price">
+      </p>
+
+     
+      <button (click)="AddOrder()" 
+      class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">
+      ADD <i class="fa fa-check"></i></button>
+    </div>
+  </div>
+</div>
