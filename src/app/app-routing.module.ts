@@ -8,7 +8,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminComponent } from './admin/admin.component';
-import { ProfilePageComponent } from './profilePage/ProfilePage.component';
+import { ProfilePageComponent } from './profilePage/profilePage.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/mainpage',pathMatch:'full'},

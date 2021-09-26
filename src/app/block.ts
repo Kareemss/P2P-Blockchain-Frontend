@@ -34,6 +34,7 @@ export class User{
     Email!: string
     UserName!: string
     SmartMeterNumber!: number
+    Address!: string
     PasswordHash!: string
     EnergyBalance!: number
     CurrencyBalance!: number 

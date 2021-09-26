@@ -109,7 +109,10 @@ export class MarketPageComponent implements OnInit{
     toBlockChainPage(){
         this.router.navigate(['../blockchain'],{relativeTo: this.route});
     }
-
+    toProfilePage(){
+        this.router.navigate(['../profilePage'], {relativeTo: this.route});
+    }
+    
     getEncryptedSessionToken(){
         // get encrypted session token as a string 
         let tknStr = localStorage.getItem("session-token")

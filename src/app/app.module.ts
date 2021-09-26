@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landingPage/landingPage.component';
 import { MarketPageComponent } from './marketPage/marketPage.component';
 import { AdminComponent } from './admin/admin.component';
-import { ProfilePageComponent } from './profilePage/ProfilePage.component';
+import { ProfilePageComponent } from './profilePage/profilePage.component';
 
 @NgModule({
   declarations: [

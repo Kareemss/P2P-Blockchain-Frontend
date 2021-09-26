@@ -26,7 +26,7 @@
     
     
     <div>
-      <span id="userId"  class=" w3-padding-large w3-right"></span>
+      <span id="userId"  class=" w3-padding-large w3-right"> {{user.UserName}}</span>
       <!-- <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goLogin()>Log In</button>
       <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goSignUp()>Sign Up</button> -->
     </div>
@@ -46,31 +46,109 @@
 
 <hr>
 <div class="w3-container">
-  <div class="row">
-      <div class="col-12">
-         <div class="w3-card-4">
-         <div id="userDetails">
-            This is where user details will be shown
-         </div>
-              
-        
-                
-        <!-- <p>Details: {{ block | json }}</p>-->
-      </div> 
-      </div>
-  </div>
-
+  Profile Details
   <div class="row">
     <div class="col-12">
-      <div id="showUserDetails">
-        
-        
+      <div class="w3-card-4">
+        <div *ngIf="userpresent" id="userDetails">
+          <p *ngIf="user.FullName" >
+            Full Name: {{user.FullName}}
+          </p>
+          <p *ngIf="user.UserName" >
+            Username: {{user.UserName}}
+          </p>
+          <p>
+            Email: {{user.Email}}
+          </p>
+          <p>
+            Phone: {{user.PhoneNumber}}
+          </p>
+          <p *ngIf="user.Address">
+            Address: {{user.Address}}
+          </p>
+          <p>
+            ID: {{user.ID}}
+          </p>
+          <p>
+            Smartmeter Number: {{user.SmartMeterNumber}}
+          </p>
+          <p>
+            <i class="fa fa-bolt"></i>
+            Energy Balance: {{user.EnergyBalance}}KWh
+          </p>
+          <p>
+            <i class="fa fa-money"></i>
+            Currency Balance: {{user.CurrencyBalance}}$
+          </p>
+          <p *ngIf="user.CompletedTransaction" >
+            Completed Transactions: {{user.CompletedTransaction}}
+          </p>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div *ngIf="MarketFetched && BlocksFetched" class="col-12">
+    <button class="w3-button w3-black w3-padding-small w3-margin-right" (click)="ShowCompleted()">Completed Orders</button>
+    <button class="w3-button w3-black w3-padding-small" (click)="ShowOpen()">Open Orders</button>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div id="showMarketDetails">
+        <ng-container *ngIf="Showcompleted">
+          <div *ngFor="let block of blocks">
+            <div class='w3-card-4 w3-margin w3-padding'>
+              <div class="row">
+                <div class="col-4">
+                  <p>
+                    Seller: {{block.AllData.Seller}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Amount: {{block.AllData.Amount}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Price: {{block.AllData.Price}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="Showopen">
+          <div *ngFor="let order of userorders">
+            <div class='w3-card-4 w3-margin w3-padding'>
+              <div class="row">
+                <ng-container *ngIf="order.Buyer" class="col-4">
+                  <p>
+                    Buyer: {{order.Buyer}}
+                  </p>
+                </ng-container>
+                <ng-container *ngIf="order.Seller" class="col-4">
+                  <p>
+                    Seller: {{order.Seller}}
+                  </p>
+                </ng-container>
+                <div class="col-4">
+                  <p>
+                    Amount: {{order.Amount}}
+                  </p>
+                </div>
+                <div class="col-4">
+                  <p>
+                    Price: {{order.Price}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
           
       </div>
     </div>
   </div>
- 
-  
 </div>
 <!-- <hr> -->
 

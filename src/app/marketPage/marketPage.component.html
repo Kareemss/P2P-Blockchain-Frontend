@@ -30,9 +30,11 @@
       </div>
     </div>
     <div>
-      <span id="userId"  class=" w3-padding-large w3-right"></span>
-      <!-- <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goLogin()>Log In</button>
-      <button  class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=goSignUp()>Sign Up</button> -->
+      <span id="userId" class=" w3-padding-large w3-right"
+      style="cursor: pointer"
+      (click)=toProfilePage()>
+      {{user.UserName}}
+      </span>
     </div>
     
   </div>
@@ -51,9 +53,9 @@
 <hr>
 <div class="w3-container">
   <div class="row">
-      <div class="col-12">
-          <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small w3-margin-right" (click)="ShowSell()">Buy</button>
-          <button [disabled] ="!IsFetched" class="w3-button w3-black w3-padding-small" (click)="ShowBuy()">Sell</button>
+      <div *ngIf="IsFetched" class="col-12">
+          <button class="w3-button w3-black w3-padding-small w3-margin-right" (click)="ShowSell()">Buy</button>
+          <button class="w3-button w3-black w3-padding-small" (click)="ShowBuy()">Sell</button>
       </div>
   </div>
 

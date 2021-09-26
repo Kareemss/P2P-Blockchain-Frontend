@@ -11,20 +11,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DisplayBlockchainComponent implements OnInit {
 
   blockchain: blockInterface[] = [];
-  toDisplay:boolean= false;
-
+  block: blockInterface | undefined;
   constructor(private _httpService: HttpService, private router: Router,private route: ActivatedRoute) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getBlockchain();
+  }
   
   getBlockchain() {
-    this._httpService.getBlockChain().subscribe(data => this.blockchain = data);
-    this.toDisplay = true;
+    this._httpService.getBlockChain().subscribe(data =>{
+      this.blockchain = data
+    });
+    
   }
 
   ngAfterViewInit(){
     // call the get blockchain method when page is loaded
-    this.getBlockchain();
+    
   }
 
   
