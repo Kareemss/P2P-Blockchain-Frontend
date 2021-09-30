@@ -11,7 +11,7 @@ export interface blockInterface {
 
 export interface dataInterface {
     OrderID: string,
-    Isuuer: string,
+    Issuer: string,
     Seller: string,
     Buyer: string,
     Amount: number,

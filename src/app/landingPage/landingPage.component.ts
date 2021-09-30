@@ -39,11 +39,6 @@ export class LandingPageComponent implements OnInit{
     }
 
     
-    
-
-    ngAfterViewInit(){
-        
-      }
 
     toBlockChainPage(){
         this.router.navigate(['../blockchain'],{relativeTo: this.route});
@@ -76,6 +71,15 @@ export class LandingPageComponent implements OnInit{
       this._httpService.AddOrder(this.block).subscribe(data=>{
           console.log(data)
       })
+    
+    }
+    ShowSell(){
+      this.block= new Order();
+      document.getElementById('sellModal')!.style.display='block'
+    }
+    ShowBuy(){
+      this.block= new Order();
+      document.getElementById('buyModal')!.style.display='block'
     }
 
     goLogin(){

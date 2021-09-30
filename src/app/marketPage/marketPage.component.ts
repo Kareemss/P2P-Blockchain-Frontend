@@ -66,14 +66,16 @@ export class MarketPageComponent implements OnInit{
         console.log("showing sellers")
     }
 
-    PressBuy(Order: Order){
-        this.CurrentOrder=Order
+    PressBuy(order: Order){
+        this.CurrentOrder=order
+        this.block= new Order();
         document.getElementById('buyModal')!.style.display='block'
         console.log(this.CurrentOrder)
     }
     
-    PressSell(Order: Order){
-        this.CurrentOrder=Order
+    PressSell(order: Order){
+        this.CurrentOrder=order
+        this.block= new Order();
         document.getElementById('sellModal')!.style.display='block'
         console.log(this.CurrentOrder)
     }

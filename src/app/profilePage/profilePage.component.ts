@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
-import { blockInterface, User, Order } from "../block";
+import { blockInterface, User, Order, DeleteQuery } from "../block";
 import { HttpService } from '../http.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,6 +16,7 @@ import * as CryptoJS from 'crypto-js';
 
 export class ProfilePageComponent implements OnInit{
     user = new User();
+    deletion = new DeleteQuery();
     userorders: Order[] =[];
     blocks: blockInterface[] = [];
     userpresent= false;
@@ -56,6 +57,17 @@ export class ProfilePageComponent implements OnInit{
     ShowCompleted(){
         this.Showopen=false;
         this.Showcompleted=true;
+    }
+    DeleteOrder(orderID: number){
+        this.deletion.Database="Market";
+        this.deletion.Collection="Orders";
+        this.deletion.Query= "_id";
+        this.deletion.Condition=orderID;
+        this.deletion.DeletionType=1;
+        console.log(this.deletion)
+        this._httpService.Deletion(this.deletion).subscribe(data =>{
+            console.log(data)
+        })
     }
     toBlockChainPage(){
         this.router.navigate(['../blockchain'],{relativeTo: this.route});

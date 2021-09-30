@@ -17,7 +17,7 @@ import { MarketPageComponent } from './marketPage/marketPage.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProfilePageComponent } from './profilePage/profilePage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { ButtonComponent } from './components/button/button.component'
 @NgModule({
   declarations: [
