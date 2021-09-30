@@ -31,25 +31,27 @@ export class MarketPageComponent implements OnInit{
         
         this._httpService.getMarket().subscribe(data =>{
             this.allorders = data;
-            this.sellorders = this.allorders.filter(
-                order => order.Seller !=""
-            );
-            this.sellorders = this.sellorders.sort((a, b) => (
-                a.Price < b.Price ? -1 : 1));
-            console.log(this.sellorders)
-            this.buyorders = this.allorders.filter(
-                order => order.Buyer !=""
-            );
-            this.buyorders = this.buyorders.sort((a, b) => (
-                a.Price > b.Price ? -1 : 1));
-            console.log(this.buyorders)
+            if (data!=null){
+                this.sellorders = this.allorders.filter(
+                    order => order.Seller !=""
+                );
+                this.sellorders = this.sellorders.sort((a, b) => (
+                    a.Price < b.Price ? -1 : 1));
+                console.log(this.sellorders)
+                this.buyorders = this.allorders.filter(
+                    order => order.Buyer !=""
+                );
+                this.buyorders = this.buyorders.sort((a, b) => (
+                    a.Price > b.Price ? -1 : 1));
+                console.log(this.buyorders)
+            }
             this.IsFetched = true;
         }); 
 
         this._httpService.getUser(this.user).subscribe(data =>{
             this.user=data;
             console.log(data)
-            document.getElementById("userId")!.innerHTML = this.user.UserName;
+            // document.getElementById("userId")!.innerHTML = this.user.UserName;
         });
         
     } 
@@ -81,6 +83,7 @@ export class MarketPageComponent implements OnInit{
         this.block.Buyer=this.CurrentOrder.Buyer;
         this.block.Issuer=this.CurrentOrder.Issuer;
         this.block.Price=this.CurrentOrder.Price;
+        this.block.OrderID=this.CurrentOrder.OrderID;
         console.log(this.block)
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
@@ -92,6 +95,8 @@ export class MarketPageComponent implements OnInit{
         this.block.Seller=this.CurrentOrder.Seller;
         this.block.Issuer=this.CurrentOrder.Issuer;
         this.block.Price=this.CurrentOrder.Price;
+        this.block.OrderID=this.CurrentOrder.OrderID;
+        console.log(this.block)
         this._httpService.AddTransaction(this.block).subscribe(data=>{
             console.log(data)
         })

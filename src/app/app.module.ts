@@ -16,7 +16,8 @@ import { LandingPageComponent } from './landingPage/landingPage.component';
 import { MarketPageComponent } from './marketPage/marketPage.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProfilePageComponent } from './profilePage/profilePage.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button'
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,9 @@ import { ProfilePageComponent } from './profilePage/profilePage.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

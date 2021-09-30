@@ -9,19 +9,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HttpService {
 
-  //private _url: string = "https://p2p-go-backend.herokuapp.com/";
-  private _url: string = "http://localhost:8080/";
-  private _url1: string = "http://localhost:8080/WriteBlock";
-  private _url2: string = "http://localhost:8080/WriteUser";
-  private _url3: string = "http://localhost:8080/UserLogin";
-
-  private _url4: string = "http://localhost:8080/WriteOrder";
-
-  private _url5: string = "http://localhost:8080/Market";
   
-  private _url6: string = "http://localhost:8080/Delete";
-  private _url7: string = "http://localhost:8080/AddBalance";
-  private _url8: string = "http://localhost:8080/GetUser";
+  private _url: string = "https://blockchain-p2p.herokuapp.com/";
+  // private _url: string = "http://localhost:8080/";
+  private _url1: string = this._url + "WriteBlock";
+  private _url2: string = this._url + "WriteUser";
+  private _url3: string = this._url + "UserLogin";
+
+  private _url4: string = this._url + "WriteOrder";
+
+  private _url5: string = this._url + "Market";
+  
+  private _url6: string = this._url + "Delete";
+  private _url7: string = this._url + "AddBalance";
+  private _url8: string = this._url + "GetUser";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }

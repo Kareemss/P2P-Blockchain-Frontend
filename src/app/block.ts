@@ -19,7 +19,7 @@ export interface dataInterface {
 }
 
 export class Order {
-    OrderID!: string
+    OrderID!: number
     Issuer!: string
     Seller!: string
     Buyer!: string
