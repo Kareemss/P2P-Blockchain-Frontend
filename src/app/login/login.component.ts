@@ -5,6 +5,7 @@ import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 //Inside imports of your TS file include 
 import * as CryptoJS from 'crypto-js';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -15,8 +16,16 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  loginForm= new FormGroup(
+    {
+      email : new FormControl('',[Validators.required, Validators.email]),
+      password : new FormControl('',[Validators.required, Validators.minLength(4)])
+      
+    }
+  );
   validatedUser = new User();
+  hide: boolean = true;
+  Incorrect=false;
   constructor(private _http: HttpClientModule, private _httpService: HttpService, private route:ActivatedRoute , private router: Router) { }
 
   // Declare this key and iv values in declaration
@@ -25,22 +34,27 @@ export class LoginComponent implements OnInit {
   private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
 
   ngOnInit(): void {
+    
   }
   // compare to the user profile stoered in DB
   // ge user profile list from database
 
-  loginUser(){
-
+  OnLogin(){
+    if (!this.loginForm.valid) {
+      return;
+    }
+    this.validatedUser.Email=this.loginForm.get('email')?.value;
+    this.validatedUser.PasswordHash=this.loginForm.get('password')?.value;
     this._httpService.loginUser(this.validatedUser)
     .subscribe(data=> {
       console.log(data)
       if (data.Res == true){
-        this.router.navigate(['../landingPage'],{relativeTo: this.route});
+        this.router.navigate(['/landingpage'],{relativeTo: this.route});
         this.createSessionToken(data.Email, data.PasswordHash)
 
       }
       else {
-        document.getElementById("error")!.innerHTML = "<p><h2>Incorrect Email or Password!!</h2></p>";
+        this.Incorrect=true;
       }
     })
   }
@@ -75,9 +89,7 @@ export class LoginComponent implements OnInit {
 
   
 
-  goBack(){
-    this._httpService.goBack();
-  }
+  
 }
 
 

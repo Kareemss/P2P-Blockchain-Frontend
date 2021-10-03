@@ -1,36 +1,5 @@
-<h1 style="text-align: center;">
-<!-- <app-button color="red" text ="red" (btnClick)="whatever()"></app-button> -->
-  <br>
-<!-- <div>
-    <button (click)="getBlockchain()" class="btn btn-primary" type="button">Get Blockchain</button>
-</div> -->
+<app-navbar>
+  
+  <router-outlet></router-outlet>
+</app-navbar>
 
-<!-- <app-main-page></app-main-page> -->
-<!-- <div>
-  <div>
-    <button routerLink="/transaction" routerLinkActive="active" class="btn btn-primary" type="button"> Go make transaction </button>
-    <button (click)=onSelect(PageList[0]) class="btn btn-primary" type="button"> Go Transaction Page </button>
-  </div>
-  <div>  
-    /<button routerLink="/userprofile" routerLinkActive="active" class="btn btn-primary" type="button"> Go User Profile Page </button>
-    <button (click)=onSelect(PageList[1]) class="btn btn-primary" type="button"> Go User Profile Page </button>
-  </div>
-</div> -->
-
-<router-outlet></router-outlet>
-
-  <!-- <app-transaction></app-transaction> -->
-</h1>
-<!-- <app-display-blockchain></app-display-blockchain> -->
-<!-- 
-<div *ngIf="toDisplay" class="container-fluid">
-  <div *ngFor="let block of blockchain">
-    <div>Index: {{ block.Index }}</div>
-    <div>Seller: {{ block.AllData.Seller }}</div>
-    <div>Buyer: {{ block.AllData.Buyer }}</div>
-    <div>Amount: {{ block.AllData.Amount }}</div>
-    <div>Price: {{ block.AllData.Price }}</div>
-    <div style="color: crimson;">Details: {{ block | json }}</div>
-    <br><br>
-  </div>
-</div> -->

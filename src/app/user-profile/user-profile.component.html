@@ -1,4 +1,4 @@
-<form>
+<!-- <form>
     <div class="input-group">
         <span class="input-group-addon"></span>
         <input id="" type="text" class="form-control" placeholder="FullName" name="FullName" [(ngModel)]="user.FullName">
@@ -39,4 +39,137 @@
 
 <div>
     <button (click)="goBack()" class="w3-padding-large w3-button" type="button">Back</button>
-</div>
+</div> -->
+
+<mat-card>
+    <mat-card-content>
+      <div class="header">
+        <P>Create A New Account</P>
+      </div>
+      <form 
+      (ngSubmit)="addUserProfile()" 
+      name="loginForm" 
+      [formGroup]="SignUpForm"
+      >
+        <div class="emailInput">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              formControlName="email"
+              matInput
+              placeholder="Enter email address" required
+              
+            />
+                <mat-error *ngIf="!SignUpForm.controls['email'].valid">
+                Email is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input
+              matInput
+              placeholder="Full Name" required
+              type="text"
+              [(ngModel)]="user.FullName"
+              [ngModelOptions]="{standalone: true}"
+            />
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Username" required
+                [(ngModel)]="user.UserName"
+                [ngModelOptions]="{standalone: true}"
+              />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input
+                matInput
+                placeholder="Phone Number" required
+                [(ngModel)]="user.PhoneNumber"
+                type="number" min="0"
+                [ngModelOptions]="{standalone: true}"
+              />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>ID</mat-label>
+              <input
+                matInput
+                placeholder="ID" required
+                [(ngModel)]="user.ID"
+                type="text"
+                [ngModelOptions]="{standalone: true}"
+              />
+              <!-- <mat-error *ngIf="!SignUpForm.controls['email'].valid">
+                  Username is required
+                </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              placeholder="Home Address" required
+              [(ngModel)]="user.Address"
+              [ngModelOptions]="{standalone: true}"
+            />
+            <!-- <mat-error *ngIf="!SignUpForm.controls['email'].valid">
+                Username is required
+              </mat-error> -->
+          </mat-form-field>
+      </div>
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>SmartMeter Number</mat-label>
+              <input
+                matInput
+                placeholder="SmartMeter Number" required
+                type="number" min="0"
+                [(ngModel)]="user.SmartMeterNumber"
+                [ngModelOptions]="{standalone: true}"
+              />
+              <!-- <mat-error *ngIf="!SignUpForm.controls['email'].valid">
+                  Username is required
+                </mat-error> -->
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input 
+                formControlName="password" 
+                matInput [type]=" hide ? 'password' : 'text'" 
+                required 
+                
+                />
+                <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+                <mat-error *ngIf="!SignUpForm.controls['password'].valid">
+                Password is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="accent">Sign Up</button>
+      </form>
+
+      <div class="button-row">
+        <a mat-button routerLink="/login">Already have an account?</a>
+      </div>
+    </mat-card-content>
+</mat-card>

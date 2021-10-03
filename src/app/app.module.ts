@@ -18,7 +18,19 @@ import { AdminComponent } from './admin/admin.component';
 import { ProfilePageComponent } from './profilePage/profilePage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { ButtonComponent } from './components/button/button.component'
+import { ButtonComponent } from './components/button/button.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list'
+import {MatCardModule} from '@angular/material/card'
+import {MatTabsModule} from '@angular/material/tabs'
+import {MatInputModule} from '@angular/material/input'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +43,8 @@ import { ButtonComponent } from './components/button/button.component'
     MarketPageComponent,
     AdminComponent,
     ProfilePageComponent,
-    ButtonComponent
+    ButtonComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +53,17 @@ import { ButtonComponent } from './components/button/button.component'
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatRadioModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

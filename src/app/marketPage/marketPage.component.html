@@ -1,6 +1,6 @@
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <title>Market Page</title>
 <meta charset="UTF-8">
@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/cc6a5db783.js" crossorigin="anonymous"></script>
 
-<body>
+<body> -->
 
 <!-- Navbar -->
-<div class="w3-top">
+<!-- <div class="w3-top">
   <div class="w3-bar w3-black w3-card w3-right">
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" 
     title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
@@ -39,8 +39,54 @@
     
   </div>
   
-</div>
+</div> -->
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Make a New Order
+    </mat-panel-title>
+    <mat-panel-description>
+      New Order Form
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  
+  <p>This is the primary content of the panel.</p>
+  <div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Amount of Energy</mat-label>
+      <input
+        matInput
+        placeholder="Amount in KW/h" required
+        [(ngModel)]="user.UserName"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Price per KW/h</mat-label>
+      <input
+        matInput
+        placeholder="Price per KW/h in $" required
+        [(ngModel)]="user.UserName"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-label>Type of Order: </mat-label>
+    <mat-radio-button>
+      Buy
+    </mat-radio-button>
+    <mat-radio-button>
+      Sell
+    </mat-radio-button>
+  </div>
+  <button mat-raised-button color="accent">Submit</button>
+</mat-expansion-panel>
 
+<mat-tab-group>
+  <mat-tab label="Buy"> Content 1 </mat-tab>
+  <mat-tab label="Sell"> Content 2 </mat-tab>
+</mat-tab-group>
 <!-- Header -->
 <header class="w3-container w3-theme w3-padding" id="myHeader">
    

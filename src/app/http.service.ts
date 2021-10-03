@@ -45,7 +45,7 @@ export class HttpService {
     // const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(User);
     //const body=JSON.parse(JSON.stringify(block));
-    console.log(body)
+    // console.log(body)
     return this.http.post(this._url8, body)
     
   }
@@ -81,7 +81,7 @@ export class HttpService {
     //const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(user);
     //const body=JSON.parse(JSON.stringify(block));
-    console.log(body)
+    // console.log(body)
     return this.http.post(this._url2, body)
 
   }
@@ -97,7 +97,7 @@ export class HttpService {
     //const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(user);
     //const body=JSON.parse(JSON.stringify(block));
-    console.log(body)
+    // console.log(body)
     return this.http.post(this._url3, body)
 
   }

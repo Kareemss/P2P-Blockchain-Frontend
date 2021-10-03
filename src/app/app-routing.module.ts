@@ -13,14 +13,14 @@ import { ProfilePageComponent } from './profilePage/profilePage.component';
 const routes: Routes = [
   {path:'',redirectTo:'/mainpage',pathMatch:'full'},
   {path:'mainpage',component: MainPageComponent},  
-  {path:'mainpage/blockchain',component:DisplayBlockchainComponent},
+  {path:'blockchain',component:DisplayBlockchainComponent},
   
-  {path:'mainpage/signup',component:UserProfileComponent},
-  {path:'mainpage/login',component:LoginComponent},
-  {path:'mainpage/landingPage',component:LandingPageComponent},
-  {path:'mainpage/market',component:MarketPageComponent},
+  {path:'signup',component:UserProfileComponent},
+  {path:'login',component:LoginComponent},
+  {path:'landingpage',component:LandingPageComponent},
+  {path:'market',component:MarketPageComponent},
   {path:'admin',component:AdminComponent},
-  {path: 'mainpage/profilePage', component: ProfilePageComponent}
+  {path: 'profilepage', component: ProfilePageComponent}
 ];
 
 // const routes: Routes = [
