@@ -16,19 +16,28 @@ mat-expansion-panel {
   max-height: 600px;
 }
 
-mat-tab-group {
-  max-width: 600px;
+.tabs {
+  flex: 1 0 auto;
+  max-width: 90%;
   margin: 2em auto;
   text-align: center;
   max-height: 600px;
+  position:sticky;
 }
 
 .header{
   text-align: center;
 
 }
+.header1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .full-width {
-  width: 80%;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button-row {

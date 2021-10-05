@@ -1,0 +1,9 @@
+.tabs {
+    flex: 1 0 auto;
+    max-width: 90%;
+    margin: 2em auto;
+    /* margin-bottom: 100px !important; */
+    text-align: center;
+    max-height: 80%;
+    position:sticky;
+  }

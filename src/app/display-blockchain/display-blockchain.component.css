@@ -1,0 +1,8 @@
+.cards {
+    flex: 1 0 auto;
+    max-width: 90%;
+    margin: 2em auto;
+    text-align: left;
+    max-height: 600px;
+    position:sticky;
+  }

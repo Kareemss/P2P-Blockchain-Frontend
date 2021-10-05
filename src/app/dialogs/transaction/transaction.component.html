@@ -1,0 +1,81 @@
+<div class="header">
+    <h2 mat-dialog-title>New Transaction</h2>
+    
+    <button mat-icon-button [mat-dialog-close]="false">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+
+<div mat-dialog-content>
+    <p>
+        <label *ngIf="data?.title=='Sell'"><mat-icon>person</mat-icon>
+            Buyer: 
+        </label>
+        <label *ngIf="data?.title=='Buy'"><mat-icon>person</mat-icon>
+            Seller: 
+        </label>
+        {{data?.issuer}}
+    </p>
+    <p *ngIf="data?.title=='Buy'">
+        <mat-icon>bolt</mat-icon>
+        Max amount to be sold by seller: {{data?.amount}}KWh
+    </p>
+    <p *ngIf="data?.title=='Sell'">
+        <mat-icon>bolt</mat-icon>
+        Max amount to be bought by buyer: {{data?.amount}}KWh
+    </p>
+    <p>
+        <mat-icon>sell</mat-icon>
+        Price: {{data?.price}} $/KWh
+    </p>
+    <p *ngIf="data?.title=='Buy'">
+        <mat-icon>account_balance_wallet</mat-icon>
+        Balance in wallet:{{data?.userCBalance}}$
+    </p>
+    <p *ngIf="data?.title=='Sell'">
+        <mat-icon>battery_charging_full</mat-icon>
+        Energy balance available: {{data?.userEBalance}}KWh
+    </p>
+    <form (ngSubmit)="confirm()" name="amountForm" [formGroup]="amountForm">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Amount to {{data?.title}}</mat-label>
+            <input
+            type="number" min="0" step="0.01" max="{{data?.maxInput}}"
+            formControlName="amount"
+            matInput
+            placeholder="Please enter desired energy amount" required
+            
+            />
+            <mat-error *ngIf="!amountForm.controls['amount'].valid">
+                Please enter a valid amount
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <p *ngIf="data?.title=='Buy'">
+        <mat-icon>paid</mat-icon>
+        To Pay: {{amountForm.get('amount')?.value}}$
+    </p>
+    
+    <p *ngIf="data?.title=='Sell'">
+        <mat-icon>paid</mat-icon>
+        To Receive: {{amountForm.get('amount')?.value}}$
+    </p>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+    <button 
+        mat-raised-button color="primary"
+        (click)="cancel()"
+        
+        >
+       Cancel 
+        <!-- {{data?.cancelText}} -->
+    </button>
+    <button 
+        mat-raised-button color="accent" 
+        (click)="confirm()"
+    >
+        Confirm
+        <!-- {{data?.confirmText}} -->
+    </button>
+</div>

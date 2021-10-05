@@ -1,72 +1,21 @@
 
 
-<!DOCTYPE html>
-<html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/cc6a5db783.js" crossorigin="anonymous"></script>
 
-<body>
-
-<!-- Navbar -->
-<!-- <div class="w3-top">
-  <div class="w3-bar w3-black w3-card w3-right">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" 
-    onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" (click)=toMarketPage()>Market</button>
-      <span id="userId" class=" w3-padding-large w3-right"
-      style="cursor: pointer"
-      (click)=toProfilePage()>
-      {{user.UserName}}
-      </span>
-    
-  </div>
-  
-</div> -->
-
-<!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
-   
-  <div class="w3-center">
-  <h1 class="w3-wide w3-center">Blockchain Page</h1>
-  </div>
-</header>
-
-
-
-<div class="w3-container">
-  <hr>
-  <div class="w3-center">
-    <h2>Current Blockchain</h2>
-    
-  </div>
-
-  
-    <div *ngFor="let block of blockchain.slice().reverse()">
-      <div style="padding: 10px;" class="w3-card-4">
-              
-        <p><b>Index:</b> {{ block.Index }}</p>
-        <p><b>Seller:</b> {{ block.AllData.Seller }}</p>
-        <p><b>Buyer:</b> {{ block.AllData.Buyer }}</p>
-        <p><b>Amount:</b> {{ block.AllData.Amount }}</p>
-        <p><b>Price:</b> {{ block.AllData.Price }}</p>
-        <p><b>Previous Hash:</b> {{ block.PrevHash }}</p>
-        <p><b>Current Hash:</b> {{ block.Hash }}</p>
-        <p><b>Timestamp:</b> {{ block.Timestamp.slice(0, 19) }}</p> 
-                
-        <!-- <p>Details: {{ block | json }}</p>-->
-      </div>        
-    </div>
-      
-    
-
+<H1 style="text-align: center;">Blockchain History</H1>
+<div class="cards">
+  <mat-card *ngFor="let block of blockchain.slice().reverse()">
+    <div style="padding: 10px;">    
+      <p><b>Index:</b> {{ block.Index }}</p>
+      <p><b>Seller:</b> {{ block.AllData.Seller }}</p>
+      <p><b>Buyer:</b> {{ block.AllData.Buyer }}</p>
+      <p><b>Amount:</b> {{ block.AllData.Amount }}</p>
+      <p><b>Price:</b> {{ block.AllData.Price }}</p>
+      <p><b>Previous Hash:</b> {{ block.PrevHash }}</p>
+      <p><b>Current Hash:</b> {{ block.Hash }}</p>
+      <p><b>Timestamp:</b> {{ block.Timestamp.slice(0, 19) }}</p> 
+    </div>        
+  </mat-card>
 </div>
 
-</body>
-</html>
+
 

@@ -1,8 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Order, dataInterface, User } from '../block';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { HttpService } from '../http.service';
 import * as CryptoJS from 'crypto-js';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DialogService } from '../services/dialog.service';
+import { transactionDialogData } from '../services/dialog-data';
 
 @Component({
     selector:'app-marketPage',
@@ -10,6 +13,15 @@ import * as CryptoJS from 'crypto-js';
     styleUrls: ['./marketPage.component.css']
 })
 export class MarketPageComponent implements OnInit{
+    NewOrderForm = new FormGroup({
+        amount: new FormControl('', [Validators.required]),
+        price: new FormControl('', [Validators.required]),
+        type: new FormControl()
+    })
+    maxOrder!: number;
+    title!: string;
+    maxInput!: number;
+    NewOrder = new Order();
     block = new Order();
     CurrentOrder= new Order();
     sellorders: Order[] = [];
@@ -23,7 +35,7 @@ export class MarketPageComponent implements OnInit{
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)
   private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
-    constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private dialogService: DialogService, private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
 
     //constructor(private _http: HttpClient, private _httpService:HttpService) {}
     ngOnInit(): void{
@@ -51,10 +63,41 @@ export class MarketPageComponent implements OnInit{
         this._httpService.getUser(this.user).subscribe(data =>{
             this.user=data;
             console.log(data)
-            // document.getElementById("userId")!.innerHTML = this.user.UserName;
         });
         
     } 
+    
+    validate(){
+        if (this.NewOrderForm.get('type')?.value=="Buy"){
+            this.maxOrder= this.user.CurrencyBalance/this.NewOrderForm.get('price')?.value;
+        }else{
+            this.maxOrder=this.user.EnergyBalance;
+        }
+    }
+
+    // test(){
+    //     this.dialogService.transactionDialog({
+    //         title: 'Sell',
+    //         message:'message',
+    //         confirmText: 'Yes',
+    //         cancelText: 'No',
+    //         issuer: 'seller',
+    //         amount: 'amount',
+    //         price: 'price'
+
+    //     }).subscribe(res=>{
+    //         console.log(res);
+    //     });
+    // }
+
+    clear(){
+        this.NewOrderForm = new FormGroup({
+            amount: new FormControl('', [Validators.required]),
+            price: new FormControl('', [Validators.required]),
+            type: new FormControl()
+        })
+    }
+
     ShowBuy(){
         this.Showbuy=true;
         this.Showsell=false;
@@ -66,18 +109,92 @@ export class MarketPageComponent implements OnInit{
         console.log("showing sellers")
     }
 
-    PressBuy(order: Order){
-        this.CurrentOrder=order
-        this.block= new Order();
-        document.getElementById('buyModal')!.style.display='block'
-        console.log(this.CurrentOrder)
+    PressBuySell(order: Order){
+        console.log(order)
+        if (order.Issuer==order.Seller){
+            this.title= "Buy"
+            console.log(this.title)
+            let maxPayed = order.Price*order.Amount;
+            if (this.user.CurrencyBalance<=maxPayed){
+                this.maxInput=this.user.CurrencyBalance/order.Price
+            }else{
+                this.maxInput=order.Amount
+            }
+        }else{
+            this.title= "Sell"
+            console.log(this.title)
+            if (this.user.EnergyBalance<=order.Amount){
+                this.maxInput=this.user.EnergyBalance
+            }else{
+                this.maxInput=order.Amount
+            }
+        }
+        this.dialogService.transactionDialog({
+            title: this.title,
+            issuer: order.Issuer,
+            amount: order.Amount,
+            price: order.Price,
+            maxInput: this.maxInput,
+            userEBalance: this.user.EnergyBalance,
+            userCBalance: this.user.CurrencyBalance
+        }).subscribe(res=>{
+            if (res==false){
+                return
+            }
+            order.Amount=res
+            if (this.title=="Buy"){
+                order.Buyer=this.user.UserName;
+            }else{
+                order.Seller=this.user.UserName;
+            }
+            this.dialogService.confirmDialog({
+                title: 'Please Confirm Your Order:',
+                message:'Amount: '+ order.Amount+'KWh'+
+                    '<br/>Price: '+order.Price + '$/KWh'+
+                    '<br/> Total: ' + order.Price*order.Amount +'$',
+                confirmText: 'Yes',
+                cancelText: 'No',
+            }).subscribe(res=>{
+                if (res==true){
+                    this._httpService.AddTransaction(order).subscribe(data=>{
+                        console.log(data)
+                        this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                    })
+                }
+            });
+        });
     }
-    
-    PressSell(order: Order){
-        this.CurrentOrder=order
-        this.block= new Order();
-        document.getElementById('sellModal')!.style.display='block'
-        console.log(this.CurrentOrder)
+
+    AddNewOrder() {
+        if (!this.NewOrderForm.valid) {
+            return;
+        }
+        this.NewOrder= new Order();
+        if (this.NewOrderForm.get('type')?.value =="Buy"){
+            this.NewOrder.Buyer=this.user.UserName;
+            this.NewOrder.Issuer=this.NewOrder.Buyer;
+        }else{
+            this.NewOrder.Seller=this.user.UserName;
+            this.NewOrder.Issuer=this.NewOrder.Seller;
+        }
+        this.NewOrder.Amount=this.NewOrderForm.get('amount')?.value;
+        this.NewOrder.Price=this.NewOrderForm.get('price')?.value;
+        this.dialogService.confirmDialog({
+            title: 'Please Confirm Your Order:',
+            message:'Amount: '+ this.NewOrder.Amount +'KWh'+
+            '<br/>Price: '+this.NewOrder.Price+ '$/KWh',
+            confirmText: 'Yes',
+            cancelText: 'No',
+        }).subscribe(res=>{
+            if (res==true){
+                this._httpService.AddOrder(this.NewOrder).subscribe(data=>{
+                    // console.log(data)
+                })
+                this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                // console.log(2)
+            }
+        });
+        
     }
 
     AddSellTransaction(){

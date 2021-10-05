@@ -40,55 +40,137 @@
   </div>
   
 </div> -->
-<mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Make a New Order
-    </mat-panel-title>
-    <mat-panel-description>
-      New Order Form
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  
-  <p>This is the primary content of the panel.</p>
-  <div>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Amount of Energy</mat-label>
-      <input
-        matInput
-        placeholder="Amount in KW/h" required
-        [(ngModel)]="user.UserName"
-      />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Price per KW/h</mat-label>
-      <input
-        matInput
-        placeholder="Price per KW/h in $" required
-        [(ngModel)]="user.UserName"
-      />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-label>Type of Order: </mat-label>
-    <mat-radio-button>
-      Buy
-    </mat-radio-button>
-    <mat-radio-button>
-      Sell
-    </mat-radio-button>
-  </div>
-  <button mat-raised-button color="accent">Submit</button>
-</mat-expansion-panel>
+<div>
+  <mat-expansion-panel hideToggle
+    (afterCollapse)="clear()">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Make a New Order
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-icon>account_balance_wallet</mat-icon>: {{user.CurrencyBalance}}$
+        <mat-icon>battery_charging_full</mat-icon>:    {{user.EnergyBalance}}KWh
 
-<mat-tab-group>
-  <mat-tab label="Buy"> Content 1 </mat-tab>
-  <mat-tab label="Sell"> Content 2 </mat-tab>
-</mat-tab-group>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form 
+      (ngSubmit)="AddNewOrder()" 
+      name="NewOrderForm"
+      [formGroup]="NewOrderForm"
+      >
+      <!-- <p>This is the primary content of the panel.</p> -->
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Amount of Energy</mat-label>
+          <input
+            type="number" min="0" step="0.01" max="{{maxOrder}}"
+            formControlName="amount"
+            (keyup)="validate()"
+            matInput
+            placeholder="Amount in KW/h" required
+          />
+          <mat-error *ngIf="!NewOrderForm.controls['amount'].valid">
+            Please enter a valid amount
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Price per KW/h</mat-label>
+          <input
+            type="number" min="0" step="0.01" 
+            formControlName="price"
+            (keyup)="validate()"
+            matInput
+            placeholder="Price per KW/h in $" required
+            
+          />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-label>Type of Order: </mat-label>
+        <mat-radio-group formControlName="type" required>
+          <mat-radio-button
+            value="Buy"  
+            selected
+            (change)="validate()"
+          >
+            Buy
+          </mat-radio-button>
+          <mat-radio-button
+            value="Sell"
+            (change)="validate()"
+          >
+            Sell
+          </mat-radio-button>
+        </mat-radio-group>  
+        <mat-error *ngIf="!NewOrderForm.controls['type'].valid">
+          Please select the type of order
+        </mat-error>
+      </div>
+      <button mat-raised-button color="accent">Submit</button>
+    </form>
+  </mat-expansion-panel>
+  <div class="tabs">
+    Current Market
+    <mat-tab-group mat-align-tabs="center" class="tabs" *ngIf="IsFetched">
+    
+      <mat-tab class="tabs" label="Buy">  
+        <mat-card class="full-width" *ngFor="let order of sellorders">
+              
+            <div class="row">
+              <div class="col">
+                <p>
+                  Seller: {{order.Seller}}
+                </p>
+              </div>
+              <div class="col">
+                <p>
+                  Amount: {{order.Amount}} KWh
+                </p>
+              </div>
+              <div class="col">
+                <p>
+                  Price: {{order.Price}} $/KWh
+                </p>
+                
+              </div>
+              <div class="col">
+                <button mat-raised-button color="accent" (click)="PressBuySell(order)">Buy</button>
+              </div>
+            </div>
+        </mat-card>
+      </mat-tab>
+      <mat-tab class="tabs" label="Sell"> 
+        <mat-card class="full-width" *ngFor="let order of buyorders">
+          <div class="row">
+            <div class="col">
+              <p>
+                Buyer: {{order.Buyer}}
+              </p>
+            </div>
+            <div class="col">
+              <p>
+                Amount: {{order.Amount}} KWh
+              </p>
+            </div>
+            <div class="col">
+              <p>
+                Price: {{order.Price}} $/KWh
+              </p>
+            </div>
+            <div class="col">
+              <button mat-raised-button color="accent" (click)="PressBuySell(order)">Sell</button>
+            </div>
+          </div>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
 <!-- Header -->
-<header class="w3-container w3-theme w3-padding" id="myHeader">
+<!-- <header class="w3-container w3-theme w3-padding" id="myHeader">
    
   <div class="w3-center">
   <h1 class="w3-wide w3-center">Market Page</h1>
@@ -98,12 +180,7 @@
 
 <hr>
 <div class="w3-container">
-  <div class="row">
-      <div *ngIf="IsFetched" class="col-12">
-          <button class="w3-button w3-black w3-padding-small w3-margin-right" (click)="ShowSell()">Buy</button>
-          <button class="w3-button w3-black w3-padding-small" (click)="ShowBuy()">Sell</button>
-      </div>
-  </div>
+  
 
   <div class="row">
     <div class="col-12">
@@ -159,10 +236,10 @@
           
       </div>
     </div>
-  </div>
+  </div> -->
   
     <!--  Buy Energy Modal -->
-  <div id="buyModal" class="w3-modal">
+  <!-- <div id="buyModal" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
       <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
         <span onclick="document.getElementById('buyModal').style.display='none'" 
@@ -197,11 +274,11 @@
         BUY <i class="fa fa-check"></i></button>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
   <!--  Sell Energy Modal -->
-  <div id="sellModal" class="w3-modal">
+  <!-- <div id="sellModal" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
       <header class="w3-container w3-dark-gray w3-center w3-padding-32"> 
         <span onclick="document.getElementById('sellModal').style.display='none'" 
@@ -234,5 +311,5 @@
     </div>
   </div>
   
-</div>
+</div> -->
 

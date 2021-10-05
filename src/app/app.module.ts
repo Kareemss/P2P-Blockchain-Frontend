@@ -30,7 +30,11 @@ import {MatTabsModule} from '@angular/material/tabs'
 import {MatInputModule} from '@angular/material/input'
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmComponent } from './dialogs/confirm/confirm.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { TransactionComponent } from './dialogs/transaction/transaction.component';
+import { DialogService } from './services/dialog.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +48,9 @@ import {MatRadioModule} from '@angular/material/radio';
     AdminComponent,
     ProfilePageComponent,
     ButtonComponent,
-    NavbarComponent
+    NavbarComponent,
+    ConfirmComponent,
+    TransactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,9 +69,11 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTabsModule,
     MatInputModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, DialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
