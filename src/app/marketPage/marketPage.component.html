@@ -41,15 +41,16 @@
   
 </div> -->
 <div>
-  <mat-expansion-panel hideToggle
+  <mat-expansion-panel 
     (afterCollapse)="clear()">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Make a New Order
       </mat-panel-title>
       <mat-panel-description>
-        <mat-icon>account_balance_wallet</mat-icon>: {{user.CurrencyBalance}}$
-        <mat-icon>battery_charging_full</mat-icon>:    {{user.EnergyBalance}}KWh
+        <mat-icon title="Currency Balance">account_balance_wallet</mat-icon>: {{user.CurrencyBalance}}$
+        <span class="spacer"></span>
+        <mat-icon title="Energy Balance">battery_charging_full</mat-icon>:    {{user.EnergyBalance}}KWh
 
       </mat-panel-description>
     </mat-expansion-panel-header>
@@ -92,8 +93,8 @@
         <mat-radio-group formControlName="type" required>
           <mat-radio-button
             value="Buy"  
-            selected
             (change)="validate()"
+            style="margin-right: 15px;"
           >
             Buy
           </mat-radio-button>
@@ -108,15 +109,15 @@
           Please select the type of order
         </mat-error>
       </div>
-      <button mat-raised-button color="accent">Submit</button>
+      <button style="margin-top: 15px;" mat-raised-button color="accent">Submit</button>
     </form>
   </mat-expansion-panel>
   <div class="tabs">
-    Current Market
+    <h1 class="text-center">Current Market </h1>
     <mat-tab-group mat-align-tabs="center" class="tabs" *ngIf="IsFetched">
     
       <mat-tab class="tabs" label="Buy">  
-        <mat-card class="full-width" *ngFor="let order of sellorders">
+        <mat-card style="margin-top: 10px;" class="full-width" *ngFor="let order of sellorders">
               
             <div class="row">
               <div class="col">
@@ -142,7 +143,7 @@
         </mat-card>
       </mat-tab>
       <mat-tab class="tabs" label="Sell"> 
-        <mat-card class="full-width" *ngFor="let order of buyorders">
+        <mat-card style="margin-top: 10px;" class="full-width" *ngFor="let order of buyorders">
           <div class="row">
             <div class="col">
               <p>

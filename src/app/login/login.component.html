@@ -4,8 +4,9 @@
       <div class="header">
         <P>Sign Into Your Account </P>
       </div>
-      <P style="color:red;" *ngIf="Incorrect">Incorrect Email or Password</P>
+      <P style="color: red;" *ngIf="Incorrect">Incorrect Email or Password</P>
       <form (ngSubmit)="OnLogin()" name="loginForm" [formGroup]="loginForm">
+        
         <div class="emailInput">
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Email</mat-label>

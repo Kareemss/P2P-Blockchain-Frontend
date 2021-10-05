@@ -19,3 +19,13 @@ $my-theme: mat-dark-theme($my-primary,$my-accent,$my-warn);
 
     @include angular-material-theme($my-theme);
 }
+.alternative .mat-tab-label, .alternative .mat-tab-link{
+    color: white;
+}
+// .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+//     color: #ff8484;
+// }
+// .mat-error {
+//     color: #ff4040;
+// }
+

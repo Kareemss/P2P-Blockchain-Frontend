@@ -14,8 +14,10 @@
       <a mat-list-item routerLink="mainpage">Home</a>
       <a mat-list-item routerLink="blockchain">Blockchain</a>
       <a mat-list-item routerLink="market">Market</a>
-      <a mat-list-item routerLink="signup">Sign Up</a>
-      <a mat-list-item routerLink="login">Login</a>
+      <a mat-list-item>About</a>
+      <a mat-list-item>Support</a>
+      <!-- <a mat-list-item routerLink="signup">Sign Up</a>
+      <a mat-list-item routerLink="login">Login</a> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,14 +30,19 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span><a>
-        <img src="assets/logos/NGR_logo.png"> NRG
+      <span><a style="display: flex;" class="nrg"routerLink="mainpage">
+        <img style="display: inline-flex;" src="assets/logos/NGR_logo.png">
+        <span class="nrgtxt">
+          NRG
+        </span>
       </a></span>
-      
+      <span class="spacer"></span>
       <div *ngIf="(isHandset$ | async) ===false">
-        <a mat-button routerLink="mainpage">Home</a>
+        <!-- <a mat-button routerLink="mainpage">Home</a> -->
         <a mat-button routerLink="blockchain">Blockchain</a>
         <a mat-button routerLink="market">Market</a>
+        <a mat-button>About</a>
+        <a mat-button>Support</a>
       </div>
       <span class="spacer"></span>
       <button

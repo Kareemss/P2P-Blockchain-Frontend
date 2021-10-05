@@ -32,9 +32,19 @@ mat-toolbar a {
   display: inline-block;
   margin: 0 10px;
   text-decoration: none;
+  font-size: 18px;
 }
 
 img {
   width: 58.5px;
   height: 52px;
+}
+.nrg{
+  color: white;
+ 
+}
+.nrgtxt{
+  font-size: 33px;
+  margin-top: 24px;
+  margin-left: 7px;
 }

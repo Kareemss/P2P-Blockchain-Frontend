@@ -1,9 +1,27 @@
 .tabs {
-    flex: 1 0 auto;
+    /* flex: 1 0 auto;
     max-width: 90%;
     margin: 2em auto;
-    /* margin-bottom: 100px !important; */
+    margin-bottom: 20px;
+    margin-bottom: 100px !important;
     text-align: center;
-    max-height: 80%;
-    position:sticky;
+    max-height: 90%; */
+    /* position:sticky; */
+    margin: 2em auto 50px;
+    position: sticky;
+    width: 90%;
+    max-height: 500px;
+  }
+  .hhh .row{
+    
+    margin-bottom: 10px;
+     
+  }
+  .hhh .col-sm-3, .hhh .col-sm-9{
+    
+    display: flex
+     
+  }
+  .hhh .mat-icon{
+    margin-right: 8px;
   }

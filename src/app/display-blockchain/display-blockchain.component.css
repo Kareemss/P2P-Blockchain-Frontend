@@ -5,4 +5,12 @@
     text-align: left;
     max-height: 600px;
     position:sticky;
+    /* font-size:15px; */
+    overflow-wrap: break-word;
   }
+
+  .header{
+    text-align: center;
+    margin-top: 15px;
+  }
+  

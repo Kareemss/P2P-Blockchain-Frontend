@@ -1,13 +1,4 @@
-#ss{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer !important;
-  }
-  .focused {
-    background-color: red !important;
-  }
-.card { cursor: pointer !important; }
+
 
 mat-expansion-panel {
   max-width: 600px;
@@ -15,14 +6,23 @@ mat-expansion-panel {
   text-align: center;
   max-height: 600px;
 }
+.spacer {
+  flex: 0.5 1 auto;
+}
 
 .tabs {
-  flex: 1 0 auto;
+  /* flex: 1 0 auto;
   max-width: 90%;
   margin: 2em auto;
+  margin-bottom: 20px;
+  margin-bottom: 100px !important;
   text-align: center;
-  max-height: 600px;
-  position:sticky;
+  max-height: 90%; */
+  /* position:sticky; */
+  margin: 2em auto 50px;
+  position: sticky;
+  width: 90%;
+  max-height: 500px;
 }
 
 .header{

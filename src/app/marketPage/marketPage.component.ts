@@ -98,16 +98,16 @@ export class MarketPageComponent implements OnInit{
         })
     }
 
-    ShowBuy(){
-        this.Showbuy=true;
-        this.Showsell=false;
-        console.log("showing buyers")
-    }
-    ShowSell(){
-        this.Showbuy=false;
-        this.Showsell=true;
-        console.log("showing sellers")
-    }
+    // ShowBuy(){
+    //     this.Showbuy=true;
+    //     this.Showsell=false;
+    //     console.log("showing buyers")
+    // }
+    // ShowSell(){
+    //     this.Showbuy=false;
+    //     this.Showsell=true;
+    //     console.log("showing sellers")
+    // }
 
     PressBuySell(order: Order){
         console.log(order)
@@ -159,6 +159,7 @@ export class MarketPageComponent implements OnInit{
                     this._httpService.AddTransaction(order).subscribe(data=>{
                         console.log(data)
                         this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                        this.ngOnInit()
                     })
                 }
             });
@@ -189,53 +190,56 @@ export class MarketPageComponent implements OnInit{
             if (res==true){
                 this._httpService.AddOrder(this.NewOrder).subscribe(data=>{
                     // console.log(data)
+                    this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                    this.ngOnInit()
                 })
-                this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                
                 // console.log(2)
             }
         });
         
+        
     }
 
-    AddSellTransaction(){
-        this.block.Seller=this.user.UserName;
-        this.block.Buyer=this.CurrentOrder.Buyer;
-        this.block.Issuer=this.CurrentOrder.Issuer;
-        this.block.Price=this.CurrentOrder.Price;
-        this.block.OrderID=this.CurrentOrder.OrderID;
-        console.log(this.block)
-        this._httpService.AddTransaction(this.block).subscribe(data=>{
-            console.log(data)
-        })
-    }
+    // AddSellTransaction(){
+    //     this.block.Seller=this.user.UserName;
+    //     this.block.Buyer=this.CurrentOrder.Buyer;
+    //     this.block.Issuer=this.CurrentOrder.Issuer;
+    //     this.block.Price=this.CurrentOrder.Price;
+    //     this.block.OrderID=this.CurrentOrder.OrderID;
+    //     console.log(this.block)
+    //     this._httpService.AddTransaction(this.block).subscribe(data=>{
+    //         console.log(data)
+    //     })
+    // }
 
-    AddBuyTransaction(){
-        this.block.Buyer=this.user.UserName;
-        this.block.Seller=this.CurrentOrder.Seller;
-        this.block.Issuer=this.CurrentOrder.Issuer;
-        this.block.Price=this.CurrentOrder.Price;
-        this.block.OrderID=this.CurrentOrder.OrderID;
-        console.log(this.block)
-        this._httpService.AddTransaction(this.block).subscribe(data=>{
-            console.log(data)
-        })
-    }
-    goBack(){
-        this._httpService.goBack();
-    }
-    goLogin(){
-        this.router.navigate(['../login'],{relativeTo: this.route});
-    }
-    goSignUp(){
-        this.router.navigate(['../signup'],{relativeTo: this.route});
-    }
+    // AddBuyTransaction(){
+    //     this.block.Buyer=this.user.UserName;
+    //     this.block.Seller=this.CurrentOrder.Seller;
+    //     this.block.Issuer=this.CurrentOrder.Issuer;
+    //     this.block.Price=this.CurrentOrder.Price;
+    //     this.block.OrderID=this.CurrentOrder.OrderID;
+    //     console.log(this.block)
+    //     this._httpService.AddTransaction(this.block).subscribe(data=>{
+    //         console.log(data)
+    //     })
+    // }
+    // goBack(){
+    //     this._httpService.goBack();
+    // }
+    // goLogin(){
+    //     this.router.navigate(['../login'],{relativeTo: this.route});
+    // }
+    // goSignUp(){
+    //     this.router.navigate(['../signup'],{relativeTo: this.route});
+    // }
     
-    toBlockChainPage(){
-        this.router.navigate(['../blockchain'],{relativeTo: this.route});
-    }
-    toProfilePage(){
-        this.router.navigate(['../profilePage'], {relativeTo: this.route});
-    }
+    // toBlockChainPage(){
+    //     this.router.navigate(['../blockchain'],{relativeTo: this.route});
+    // }
+    // toProfilePage(){
+    //     this.router.navigate(['../profilePage'], {relativeTo: this.route});
+    // }
     
     getEncryptedSessionToken(){
         // get encrypted session token as a string 

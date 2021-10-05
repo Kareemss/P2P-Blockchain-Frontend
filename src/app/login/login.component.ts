@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     .subscribe(data=> {
       console.log(data)
       if (data.Res == true){
-        this.router.navigate(['/landingpage'],{relativeTo: this.route});
+        this.router.navigate(['/market'],{relativeTo: this.route});
         this.createSessionToken(data.Email, data.PasswordHash)
 
       }

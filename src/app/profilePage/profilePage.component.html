@@ -43,52 +43,114 @@
 
 
 
-  <mat-card *ngIf="userpresent">
-    <h1>{{user.UserName}}'s Profile</h1>
+  <mat-card class="hhh" style="margin: 15px;" *ngIf="userpresent">
+    <h1><mat-icon>person</mat-icon>{{user.UserName}}'s Profile</h1>
     <div  id="userDetails">
-      <p *ngIf="user.FullName" >
-        Full Name: {{user.FullName}}
-      </p>
-      <p *ngIf="user.UserName" >
-        Username: {{user.UserName}}
-      </p>
-      <p>
-        Email: {{user.Email}}
-      </p>
-      <p>
-        Phone: {{user.PhoneNumber}}
-      </p>
-      <p *ngIf="user.Address">
-        Address: {{user.Address}}
-      </p>
-      <p>
-        ID: {{user.ID}}
-      </p>
-      <p>
-        Smartmeter Number: {{user.SmartMeterNumber}}
-      </p>
-      <p>
-        <i class="fa fa-bolt"></i>
-        Energy Balance: {{user.EnergyBalance}}KWh
-      </p>
-      <p>
-        <i class="fa fa-money"></i>
-        Currency Balance: {{user.CurrencyBalance}}$
-      </p>
-      <p *ngIf="user.CompletedTransaction" >
-        Completed Transactions: {{user.CompletedTransaction}}
-      </p>
+      <div *ngIf="user.FullName" class="row"> 
+        <div   class="col-xs-12 col-sm-3 col-md-2"> 
+          <mat-icon>badge</mat-icon>
+          Full Name: 
+        </div> 
+        <div class="col-xs-12 col-sm-9 col-md-10">  
+          {{user.FullName}}
+        </div> 
+      </div> 
+      
+      <div *ngIf="user.UserName" class="row">
+        <div   class="col-xs-12 col-sm-3 col-md-2"> 
+          <mat-icon>account_circle</mat-icon>
+          Username: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">  
+          {{user.UserName}}
+        </div> 
+      </div>
+      <div class="row">
+        <div   class="col-xs-12 col-sm-3 col-md-2"> 
+          <mat-icon>email</mat-icon>
+          Email: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">  
+          {{user.Email}}
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>phone</mat-icon>
+          Phone:
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.PhoneNumber}}
+        </div>
+      </div>
+      <div class="row" *ngIf="user.Address">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>home</mat-icon>
+          Address:
+        </div >
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.Address}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>perm_identity</mat-icon>
+          ID: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.ID}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>speed</mat-icon>
+          Smartmeter Number: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.SmartMeterNumber}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>battery_charging_full</mat-icon>
+          Energy Balance: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.EnergyBalance}}KWh
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>account_balance_wallet</mat-icon>
+          Currency Balance:
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.CurrencyBalance}}$
+        </div>
+         
+      </div>
+      <div class="row" *ngIf="user.CompletedTransaction" >
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <mat-icon>receipt</mat-icon>
+          Completed Transactions: 
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          {{user.CompletedTransaction}}
+        </div>
+        
+      </div>
     </div>
   </mat-card>
 
 
 
-  <div class="tabs">
-    {{user.UserName}}'s Orders
-    <mat-tab-group mat-align-tabs="center" class="tabs" *ngIf="MarketFetched && BlocksFetched">
+  <div *ngIf="MarketFetched && BlocksFetched">
+    <h1 class="text-center">{{user.UserName}}'s Orders</h1>
+    <mat-tab-group mat-align-tabs="center" class="tabs">
     
       <mat-tab class="tabs" label="Completed Transactions">  
-        <mat-card class="full-width" *ngFor="let block of blocks">
+        <mat-card style="margin-top: 10px;" class="full-width" *ngFor="let block of blocks">
               
             <div class="row">
               <div class="col">
@@ -110,7 +172,7 @@
         </mat-card>
       </mat-tab>
       <mat-tab class="tabs" label="Open Orders"> 
-        <mat-card class="full-width" *ngFor="let order of userorders">
+        <mat-card style="margin-top: 10px;" class="full-width" *ngFor="let order of userorders">
           <div class="row">
             <div *ngIf="order.Buyer" class="col">
               <p>
