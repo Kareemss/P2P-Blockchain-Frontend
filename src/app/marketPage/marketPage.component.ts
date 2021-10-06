@@ -149,13 +149,14 @@ export class MarketPageComponent implements OnInit{
             }
             this.dialogService.confirmDialog({
                 title: 'Please Confirm Your Order:',
-                message:'Amount: '+ order.Amount+'KWh'+
-                    '<br/>Price: '+order.Price + '$/KWh'+
-                    '<br/> Total: ' + order.Price*order.Amount +'$',
+                message:'Amount: '+ order.Amount+' KWh'+
+                    '<br/>Price: '+order.Price + ' $/KWh'+
+                    '<br/> Total: ' + order.Price*order.Amount +' $',
                 confirmText: 'Yes',
                 cancelText: 'No',
             }).subscribe(res=>{
                 if (res==true){
+                    console.log(order);
                     this._httpService.AddTransaction(order).subscribe(data=>{
                         console.log(data)
                         this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
@@ -182,12 +183,13 @@ export class MarketPageComponent implements OnInit{
         this.NewOrder.Price=this.NewOrderForm.get('price')?.value;
         this.dialogService.confirmDialog({
             title: 'Please Confirm Your Order:',
-            message:'Amount: '+ this.NewOrder.Amount +'KWh'+
-            '<br/>Price: '+this.NewOrder.Price+ '$/KWh',
+            message:'Amount: '+ this.NewOrder.Amount +' KWh'+
+            '<br/>Price: '+this.NewOrder.Price+ ' $/KWh',
             confirmText: 'Yes',
             cancelText: 'No',
         }).subscribe(res=>{
             if (res==true){
+                console.log(this.NewOrder);
                 this._httpService.AddOrder(this.NewOrder).subscribe(data=>{
                     // console.log(data)
                     this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");

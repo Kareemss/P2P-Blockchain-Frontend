@@ -30,11 +30,11 @@
     </p>
     <p *ngIf="data?.title=='Buy'">
         <mat-icon>account_balance_wallet</mat-icon>
-        Balance in wallet:{{data?.userCBalance}}$
+        Balance in wallet: {{data?.userCBalance}} $
     </p>
     <p *ngIf="data?.title=='Sell'">
         <mat-icon>battery_charging_full</mat-icon>
-        Energy balance available: {{data?.userEBalance}}KWh
+        Energy balance available: {{data?.userEBalance}} KWh
     </p>
     <form (ngSubmit)="confirm()" name="amountForm" [formGroup]="amountForm">
         <mat-form-field class="full-width" appearance="outline">
@@ -53,12 +53,12 @@
     </form>
     <p *ngIf="data?.title=='Buy'">
         <mat-icon>paid</mat-icon>
-        To Pay: {{amountForm.get('amount')?.value*data!.price}}$
+        To Pay: {{amountForm.get('amount')?.value*data!.price}} $
     </p>
     
     <p *ngIf="data?.title=='Sell'">
         <mat-icon>paid</mat-icon>
-        To Receive: {{amountForm.get('amount')?.value*data!.price}}$
+        To Receive: {{amountForm.get('amount')?.value*data!.price}} $
     </p>
 </div>
 
