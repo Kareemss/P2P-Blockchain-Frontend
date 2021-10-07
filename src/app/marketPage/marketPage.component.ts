@@ -159,7 +159,7 @@ export class MarketPageComponent implements OnInit{
                     console.log(order);
                     this._httpService.AddTransaction(order).subscribe(data=>{
                         console.log(data)
-                        this.dialogService.openSnackBar("Order submitted successfully ", "Dismiss");
+                        this.dialogService.openSnackBar("Transaction completed successfully ", "Dismiss");
                         this.ngOnInit()
                     })
                 }

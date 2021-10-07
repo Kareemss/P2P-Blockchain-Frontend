@@ -2,10 +2,11 @@
 
 
 <H1 class="header">Blockchain History</H1>
-<div class="cards">
+<div [hidden]="!blocksFetched" class="cards">
+  
   <mat-card 
     style="margin-bottom: 10px;"
-    *ngFor="let block of blockchain.slice().reverse()">
+    *ngFor="let block of obs |async">
     <div style="padding: 10px;">  
       <div class="row"> 
         <div class="col-xs-12 col-sm-2"> 
@@ -14,6 +15,16 @@
         </div> 
         <div class="col-xs-12 col-sm-10">  
           <b>{{ block.Index }}</b>
+        </div> 
+      </div> 
+      <hr style="border: 0px;"/>
+      <div class="row"> 
+        <div class="col-xs-12 col-sm-2"> 
+          Issuer:
+      
+        </div> 
+        <div class="col-xs-12 col-sm-10">  
+          {{ block.AllData.Issuer }}
         </div> 
       </div> 
       <hr style="border: 0px;"/>
@@ -86,21 +97,114 @@
           {{ block.Timestamp.slice(0, 19) }}
         </div> 
       </div> 
-      
-      <!-- <p class="col"><b>Index:</b> {{ block.Index }}</p>
-      <p class="col"><b>Seller:</b> {{ block.AllData.Seller }}</p>
-      <p class="col"><b>Buyer:</b> {{ block.AllData.Buyer }}</p>
-      <p class="col"><b>Amount:</b> {{ block.AllData.Amount }}</p>
-      <p class="col"><b>Price:</b> {{ block.AllData.Price }}</p>
-      <p><b>Previous Hash:</b> {{ block.PrevHash }}</p>
-      <p><b>Current Hash:</b> {{ block.Hash }}</p>
-      <p><b>Timestamp:</b> {{ block.Timestamp.slice(0, 19) }}</p>  -->
     </div>        
   </mat-card>
   <br/>
+  <mat-paginator 
+  
+    [pageSizeOptions]="[5, 10, 20]" 
+    showFirstLastButtons
+  ></mat-paginator>
 </div>
 
+<!-- <H1 class="header">Blockchain History</H1>
+<table mat-table [dataSource]="dataSource">
 
+
+  <div class="cards">
+    <mat-card 
+      style="margin-bottom: 10px;"
+    >
+      <div style="padding: 10px;">  
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Index:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10">  
+            <b>{{ element.Index }}</b>
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div  class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Seller:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10">  
+            {{ block.AllData.Seller }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Buyer:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10">  
+            {{ block.AllData.Buyer }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Amount: 
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10"> 
+            {{ block.AllData.Amount }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div  class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Price: 
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10"> 
+            {{ block.AllData.Price }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Previous Hash:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10"> 
+            {{ block.PrevHash }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Current Hash:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10"> 
+            {{ block.Hash }}
+          </div> 
+        </div> 
+        <hr style="border: 0px;"/>  
+        <div class="row"> 
+          <div class="col-xs-12 col-sm-2"> 
+            Timestamp:
+        
+          </div> 
+          <div class="col-xs-12 col-sm-10"> 
+            {{ block.Timestamp.slice(0, 19) }}
+          </div> 
+        </div> 
+      </div>        
+    </mat-card>
+    <br/>
+  </div>
+</table>
+<mat-paginator 
+  [pageSizeOptions]="[5, 10, 20]" 
+  showFirstLastButtons
+>
+</mat-paginator> -->
 <!-- <p class="col"><b>Index:</b> {{ block.Index }}</p>
       <p class="col"><b>Seller:</b> {{ block.AllData.Seller }}</p>
       <p class="col"><b>Buyer:</b> {{ block.AllData.Buyer }}</p>

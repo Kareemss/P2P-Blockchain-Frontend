@@ -10,7 +10,7 @@ export interface blockInterface {
 
 
 export interface dataInterface {
-    OrderID: string,
+    OrderID: number,
     Issuer: string,
     Seller: string,
     Buyer: string,

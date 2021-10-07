@@ -35,6 +35,8 @@ import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TransactionComponent } from './dialogs/transaction/transaction.component';
 import { DialogService } from './services/dialog.service';
+import {MatPaginatorModule} from '@angular/material/paginator'
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +72,9 @@ import { DialogService } from './services/dialog.service';
     MatExpansionModule,
     MatRadioModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [HttpService, DialogService],
   bootstrap: [AppComponent]
