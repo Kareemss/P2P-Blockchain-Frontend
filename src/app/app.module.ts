@@ -18,7 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ProfilePageComponent } from './profilePage/profilePage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { ButtonComponent } from './components/button/button.component';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,7 +48,6 @@ import { MatTableModule } from '@angular/material/table';
     MarketPageComponent,
     AdminComponent,
     ProfilePageComponent,
-    ButtonComponent,
     NavbarComponent,
     ConfirmComponent,
     TransactionComponent,

@@ -1,11 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Order, dataInterface, User } from '../block';
-import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
+import { Order, User } from '../block';
+import { Component, OnInit} from '@angular/core';
 import { HttpService } from '../http.service';
 import * as CryptoJS from 'crypto-js';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from '../services/dialog.service';
-import { transactionDialogData } from '../services/dialog-data';
+
 
 @Component({
     selector:'app-marketPage',
@@ -22,26 +22,25 @@ export class MarketPageComponent implements OnInit{
     title!: string;
     maxInput!: number;
     NewOrder = new Order();
-    block = new Order();
-    CurrentOrder= new Order();
+    
     sellorders: Order[] = [];
     buyorders: Order[] = [];
     allorders: Order[] = [];
     IsFetched= false;
     user = new User();
-    Showsell = false;
-    Showbuy = false;
+    
     // Declare this key and iv values in declaration
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)
   private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
     constructor(private dialogService: DialogService, private _httpService:HttpService, private router: Router, private route: ActivatedRoute) { }
 
-    //constructor(private _http: HttpClient, private _httpService:HttpService) {}
+   
     ngOnInit(): void{
         this.getEncryptedSessionToken();
         
         this._httpService.getMarket().subscribe(data =>{
+            console.log(data)
             this.allorders = data;
             if (data!=null){
                 this.sellorders = this.allorders.filter(
@@ -58,12 +57,13 @@ export class MarketPageComponent implements OnInit{
                 console.log(this.buyorders)
             }
             this.IsFetched = true;
+            this._httpService.getUser(this.user).subscribe(data =>{
+                this.user=data;
+                console.log(data)
+            });
         }); 
 
-        this._httpService.getUser(this.user).subscribe(data =>{
-            this.user=data;
-            console.log(data)
-        });
+        
         
     } 
     
@@ -75,20 +75,7 @@ export class MarketPageComponent implements OnInit{
         }
     }
 
-    // test(){
-    //     this.dialogService.transactionDialog({
-    //         title: 'Sell',
-    //         message:'message',
-    //         confirmText: 'Yes',
-    //         cancelText: 'No',
-    //         issuer: 'seller',
-    //         amount: 'amount',
-    //         price: 'price'
-
-    //     }).subscribe(res=>{
-    //         console.log(res);
-    //     });
-    // }
+    
 
     clear(){
         this.NewOrderForm = new FormGroup({
@@ -98,16 +85,6 @@ export class MarketPageComponent implements OnInit{
         })
     }
 
-    // ShowBuy(){
-    //     this.Showbuy=true;
-    //     this.Showsell=false;
-    //     console.log("showing buyers")
-    // }
-    // ShowSell(){
-    //     this.Showbuy=false;
-    //     this.Showsell=true;
-    //     console.log("showing sellers")
-    // }
 
     PressBuySell(order: Order){
         console.log(order)
@@ -159,6 +136,10 @@ export class MarketPageComponent implements OnInit{
                     console.log(order);
                     this._httpService.AddTransaction(order).subscribe(data=>{
                         console.log(data)
+                        if (this.allorders.length==1){
+                            this.buyorders=[];
+                            this.sellorders=[];
+                        }
                         this.dialogService.openSnackBar("Transaction completed successfully ", "Dismiss");
                         this.ngOnInit()
                     })
@@ -202,46 +183,6 @@ export class MarketPageComponent implements OnInit{
         
         
     }
-
-    // AddSellTransaction(){
-    //     this.block.Seller=this.user.UserName;
-    //     this.block.Buyer=this.CurrentOrder.Buyer;
-    //     this.block.Issuer=this.CurrentOrder.Issuer;
-    //     this.block.Price=this.CurrentOrder.Price;
-    //     this.block.OrderID=this.CurrentOrder.OrderID;
-    //     console.log(this.block)
-    //     this._httpService.AddTransaction(this.block).subscribe(data=>{
-    //         console.log(data)
-    //     })
-    // }
-
-    // AddBuyTransaction(){
-    //     this.block.Buyer=this.user.UserName;
-    //     this.block.Seller=this.CurrentOrder.Seller;
-    //     this.block.Issuer=this.CurrentOrder.Issuer;
-    //     this.block.Price=this.CurrentOrder.Price;
-    //     this.block.OrderID=this.CurrentOrder.OrderID;
-    //     console.log(this.block)
-    //     this._httpService.AddTransaction(this.block).subscribe(data=>{
-    //         console.log(data)
-    //     })
-    // }
-    // goBack(){
-    //     this._httpService.goBack();
-    // }
-    // goLogin(){
-    //     this.router.navigate(['../login'],{relativeTo: this.route});
-    // }
-    // goSignUp(){
-    //     this.router.navigate(['../signup'],{relativeTo: this.route});
-    // }
-    
-    // toBlockChainPage(){
-    //     this.router.navigate(['../blockchain'],{relativeTo: this.route});
-    // }
-    // toProfilePage(){
-    //     this.router.navigate(['../profilePage'], {relativeTo: this.route});
-    // }
     
     getEncryptedSessionToken(){
         // get encrypted session token as a string 

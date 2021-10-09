@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
 import { blockInterface, User, Order, DeleteQuery } from "../block";
 import { HttpService } from '../http.service';
@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
 import { SlicePipe } from '@angular/common';
 import { ThisReceiver } from '@angular/compiler';
 import * as CryptoJS from 'crypto-js';
+import { MatPaginator } from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import { DialogService } from "../services/dialog.service";
 
 @Component({
     selector:'app-profilePage',
@@ -14,20 +17,31 @@ import * as CryptoJS from 'crypto-js';
     styleUrls: ['./profilePage.component.css']
 })
 
-export class ProfilePageComponent implements OnInit{
+export class ProfilePageComponent implements OnInit, OnDestroy{
     user = new User();
-    deletion = new DeleteQuery();
+    // deletion = new DeleteQuery();
     userorders: Order[] =[];
     blocks: blockInterface[] = [];
     userpresent= false;
     MarketFetched=false;
     BlocksFetched=false;
-    Showcompleted=false;
-    Showopen=false;
+    // Showcompleted=false;
+    // Showopen=false;
+    // order = new Order();
     private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   
     private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
-    constructor(private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) { }
+    
+    constructor(private dialogService: DialogService,private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) { }
+    dataSource!: MatTableDataSource<any>;
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    obs!: Observable<any>;
+    
+    ngOnDestroy(): void {
+        if (this.dataSource){
+            this.dataSource.disconnect();
+        }
+    }
     ngOnInit(){
         this.getEncryptedSessionToken();
         this._httpService.getUser(this.user).subscribe(data =>{
@@ -45,41 +59,47 @@ export class ProfilePageComponent implements OnInit{
             if (data!=null){
                 this.blocks = data.filter(block =>
                     block.AllData.Seller || block.AllData.Buyer ==this.user.UserName)
+                    this.dataSource =new MatTableDataSource<blockInterface>(this.blocks)
+                    this.dataSource.paginator= this.paginator
+                    this.obs =this.dataSource.connect();
             }
             console.log(this.blocks)
             this.BlocksFetched=true;
         });
     }
-    ShowOpen(){
-        this.Showopen=true;
-        this.Showcompleted=false;
-    }
-    ShowCompleted(){
-        this.Showopen=false;
-        this.Showcompleted=true;
-    }
-    DeleteOrder(orderID: number){
-        this.deletion.Database="Market";
-        this.deletion.Collection="Orders";
-        this.deletion.Query= "_id";
-        this.deletion.Condition=orderID;
-        this.deletion.DeletionType=1;
-        console.log(this.deletion)
-        this._httpService.Deletion(this.deletion).subscribe(data =>{
-            console.log(data)
-        })
-    }
-    toBlockChainPage(){
-        this.router.navigate(['../blockchain'],{relativeTo: this.route});
-    }
+    // ShowOpen(){
+    //     this.Showopen=true;
+    //     this.Showcompleted=false;
+    // }
+    // ShowCompleted(){
+    //     this.Showopen=false;
+    //     this.Showcompleted=true;
+    // }
 
-    toLandingPage(){
-        this.router.navigate(['../landingPage'], {relativeTo: this.route})
+    DeleteOrder(order: Order){
+        
+            
+        this.dialogService.confirmDialog({
+            title: 'Delete Order:',
+            message:'Are you sure you want to delete this order?',
+            confirmText: 'Yes',
+            cancelText: 'No',
+        }).subscribe(res=>{
+            if (res==true){
+                this._httpService.DeleteOrder(order).subscribe(data =>{
+                    // console.log(data)
+                    this.dialogService.openSnackBar("Order Deleted", "Dismiss");
+                    this.ngOnInit()
+                })
+                
+                // console.log(2)
+            }
+        });
+        
     }
     
-    toMarketPage(){
-        this.router.navigate(['../market'],{relativeTo: this.route});
-    }
+
+
     getEncryptedSessionToken(){
         // get encrypted session token as a string 
         let tknStr = localStorage.getItem("session-token")

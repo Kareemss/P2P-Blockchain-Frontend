@@ -35,7 +35,7 @@ export class DisplayBlockchainComponent implements OnInit, OnDestroy {
       this.dataSource.paginator= this.paginator
       this.obs =this.dataSource.connect();
       this.blocksFetched=true;
-      console.log(data[1])
+      // console.log(data[1])
       // this.blockchain= this.dataSource
     });
   }

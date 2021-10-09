@@ -10,8 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HttpService {
 
   
-  private _url: string = "https://blockchain-p2p.herokuapp.com/";
-  // private _url: string = "http://localhost:8080/";
+  // private _url: string = "https://blockchain-p2p.herokuapp.com/";
+  private _url: string = "http://localhost:8080/";
   private _url1: string = this._url + "WriteBlock";
   private _url2: string = this._url + "WriteUser";
   private _url3: string = this._url + "UserLogin";
@@ -23,6 +23,7 @@ export class HttpService {
   private _url6: string = this._url + "Delete";
   private _url7: string = this._url + "AddBalance";
   private _url8: string = this._url + "GetUser";
+  private _url9: string = this._url + "DeleteOrder";
 
 
   constructor(private http: HttpClient, private route:ActivatedRoute, private router: Router) { }
@@ -57,6 +58,14 @@ export class HttpService {
     //const body=JSON.parse(JSON.stringify(block));
     console.log(body)
     return this.http.post(this._url4, body)
+  }
+
+  DeleteOrder(Order: Order): Observable<any>{
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(Order);
+    //const body=JSON.parse(JSON.stringify(block));
+    console.log(body)
+    return this.http.post(this._url9, body)
   }
 
   Deletion(DeleteQuery: DeleteQuery): Observable<any>{

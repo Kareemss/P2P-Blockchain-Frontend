@@ -6,7 +6,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import * as CryptoJS from 'crypto-js';
 import { HttpService } from '../http.service';
-import { Order, User } from '../block';
+import { User } from '../block';
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -25,14 +26,19 @@ export class NavbarComponent implements OnInit {
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
   //console.log(key)
   private iv = CryptoJS.enc.Utf8.parse('4512631236589784');
-  constructor(private breakpointObserver: BreakpointObserver, private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) {}
+  constructor(private userService: UserService, private breakpointObserver: BreakpointObserver, private _httpService:HttpService, private router: Router, private route: ActivatedRoute, private _http: HttpClient) {}
   ngOnInit(){
     this.getEncryptedSessionToken();
     if (this.user.Email != undefined){
       this._httpService.getUser(this.user).subscribe(data =>{
         this.user=data;
       })
+    }else{
+      this.userService.user$.subscribe(user =>{
+        this.user=user;
+      })
     }
+    
     
     
   }

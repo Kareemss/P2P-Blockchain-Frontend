@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 //Inside imports of your TS file include 
 import * as CryptoJS from 'crypto-js';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
+// import * as EventEmitter from 'events';
 
 
 
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit {
   validatedUser = new User();
   hide: boolean = true;
   Incorrect=false;
-  constructor(private _http: HttpClientModule, private _httpService: HttpService, private route:ActivatedRoute , private router: Router) { }
+  
+  constructor(private userService: UserService, private _http: HttpClientModule, private _httpService: HttpService, private route:ActivatedRoute , private router: Router) { }
 
   // Declare this key and iv values in declaration
   private key = CryptoJS.enc.Utf8.parse('4512631236589784');
@@ -51,6 +54,8 @@ export class LoginComponent implements OnInit {
       if (data.Res == true){
         this.router.navigate(['/market'],{relativeTo: this.route});
         this.createSessionToken(data.Email, data.PasswordHash)
+        this.userService.sendUser(data.User);
+        
 
       }
       else {
