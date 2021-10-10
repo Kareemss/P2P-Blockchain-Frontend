@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class DisplayBlockchainComponent implements OnInit, OnDestroy {
 
-  // blockchain: blockInterface[] = [];
+  blockchain: blockInterface[] = [];
   // block: blockInterface | undefined;
   constructor(private _httpService: HttpService, private router: Router,private route: ActivatedRoute) { }
   dataSource!: MatTableDataSource<any>;
@@ -30,7 +30,7 @@ export class DisplayBlockchainComponent implements OnInit, OnDestroy {
     //     // console.log(this.user.UserName)
     //   })
     this._httpService.getBlockChain().subscribe(data =>{
-      // this.blockchain = data
+      this.blockchain = data.sort((a,b)=>(a.Index>b.Index ? -1 :1));
       this.dataSource =new MatTableDataSource<blockInterface>(data)
       this.dataSource.paginator= this.paginator
       this.obs =this.dataSource.connect();
