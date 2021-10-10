@@ -1,9 +1,10 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../block';
 import { HttpService } from '../http.service';
+import { DialogService } from '../services/dialog.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   user = new User();
   //newPage: boolean = false;
 
-  constructor(private _http: HttpClientModule, private _httpService:HttpService, private route:ActivatedRoute , private router: Router) { }
+  constructor(private dialogService: DialogService, private _http: HttpClientModule, private _httpService:HttpService, private route:ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
     this.SignUpForm= new FormGroup(
@@ -37,6 +38,7 @@ export class UserProfileComponent implements OnInit {
     
     this._httpService.addUserProfile(this.user)
     .subscribe(data=> {
+      this.dialogService.openSnackBar("New Account Created! ", "Dismiss");
       this.router.navigate(['/login'],{relativeTo: this.route});
       
     })

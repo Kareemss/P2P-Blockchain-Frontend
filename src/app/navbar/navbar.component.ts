@@ -47,8 +47,9 @@ export class NavbarComponent implements OnInit {
   }
 
   Logout(){
-    localStorage.removeItem("session-token")
-    this.user= new User
+    localStorage.removeItem("session-token");
+    this.user= new User;
+    this.ngOnInit();
   }
 
   getEncryptedSessionToken(){

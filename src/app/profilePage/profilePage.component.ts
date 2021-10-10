@@ -87,7 +87,9 @@ export class ProfilePageComponent implements OnInit, OnDestroy{
         }).subscribe(res=>{
             if (res==true){
                 this._httpService.DeleteOrder(order).subscribe(data =>{
-                    // console.log(data)
+                    if (this.userorders.length==1){
+                        this.userorders=[];
+                    }
                     this.dialogService.openSnackBar("Order Deleted", "Dismiss");
                     this.ngOnInit()
                 })
