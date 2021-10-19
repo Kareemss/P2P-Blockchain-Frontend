@@ -10,8 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HttpService {
 
   
-  // private _url: string = "https://blockchain-p2p.herokuapp.com/";
-  private _url: string = "http://localhost:8080/";
+  private _url: string = "https://blockchain-p2p.herokuapp.com/";
+  // private _url: string = "http://localhost:8080/";
   private _url1: string = this._url + "WriteBlock";
   private _url2: string = this._url + "WriteUser";
   private _url3: string = this._url + "UserLogin";

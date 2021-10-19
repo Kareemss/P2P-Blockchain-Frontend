@@ -22,18 +22,7 @@ const routes: Routes = [
   {path: 'profilepage', component: ProfilePageComponent}
 ];
 
-// const routes: Routes = [
-//   {path:'',redirectTo:'/mainpage',pathMatch:'full'},
-//   {
-//     path:'mainpage',
-//     component: MainPageComponent,
-//     children:[
-//       {path:'blockchain',component:DisplayBlockchainComponent},
-//       {path:'transaction',component:TransactionComponent},
-//       {path:'userprofile',component:UserProfileComponent}
-//     ]
-//   },  
-// ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,101 @@
+Date : 2021-10-19 09:38:14
+Directory : /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src
+Total : 60 files,  2346 codes, 573 comments, 479 blanks, all 3398 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| TypeScript |         35 |      1,228 |        251 |        324 |      1,803 |
+| HTML       |         12 |        891 |        292 |         98 |      1,281 |
+| CSS        |         12 |        210 |         23 |         49 |        282 |
+| SCSS       |          1 |         17 |          7 |          8 |         32 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                            | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                               |         60 |      2,346 |        573 |        479 |      3,398 |
+| app                                                                                                             |         52 |      2,273 |        493 |        446 |      3,212 |
+| app/admin                                                                                                       |          4 |        144 |          3 |         23 |        170 |
+| app/dialogs                                                                                                     |          8 |        188 |          9 |         36 |        233 |
+| app/dialogs/confirm                                                                                             |          4 |         60 |          0 |         16 |         76 |
+| app/dialogs/transaction                                                                                         |          4 |        128 |          9 |         20 |        157 |
+| app/display-blockchain                                                                                          |          4 |        163 |        183 |         47 |        393 |
+| app/login                                                                                                       |          4 |        170 |          9 |         50 |        229 |
+| app/main-page                                                                                                   |          4 |        134 |          3 |         30 |        167 |
+| app/marketPage                                                                                                  |          4 |        387 |         24 |         57 |        468 |
+| app/navbar                                                                                                      |          4 |        214 |         22 |         34 |        270 |
+| app/profilePage                                                                                                 |          4 |        313 |        153 |         62 |        528 |
+| app/services                                                                                                    |          3 |         67 |          0 |         13 |         80 |
+| app/user-profile                                                                                                |          4 |        212 |         52 |         31 |        295 |
+| environments                                                                                                    |          2 |          6 |         11 |          4 |         21 |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                        | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/admin/admin.component.css                               | CSS        |          0 |          0 |          1 |          1 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/admin/admin.component.html                              | HTML       |         67 |          3 |          7 |         77 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/admin/admin.component.spec.ts                           | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/admin/admin.component.ts                                | TypeScript |         57 |          0 |          9 |         66 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app-routing.module.ts                                   | TypeScript |         25 |         12 |          7 |         44 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app.component.css                                       | CSS        |          0 |          0 |          1 |          1 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app.component.html                                      | HTML       |          3 |          0 |          2 |          5 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app.component.spec.ts                                   | TypeScript |         31 |          0 |          5 |         36 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app.component.ts                                        | TypeScript |         13 |          6 |          7 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/app.module.ts                                           | TypeScript |         77 |          0 |          5 |         82 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/block.ts                                                | TypeScript |         49 |          0 |          5 |         54 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/confirm/confirm.component.css                   | CSS        |          5 |          0 |          0 |          5 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/confirm/confirm.component.html                  | HTML       |         22 |          0 |          5 |         27 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/confirm/confirm.component.spec.ts               | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/confirm/confirm.component.ts                    | TypeScript |         13 |          0 |          5 |         18 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/transaction/transaction.component.css           | CSS        |          5 |          0 |          0 |          5 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/transaction/transaction.component.html          | HTML       |         73 |          2 |          7 |         82 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/transaction/transaction.component.spec.ts       | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/dialogs/transaction/transaction.component.ts            | TypeScript |         30 |          7 |          7 |         44 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/display-blockchain/display-blockchain.component.css     | CSS        |         13 |          1 |          5 |         19 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/display-blockchain/display-blockchain.component.html    | HTML       |         95 |        106 |         16 |        217 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/display-blockchain/display-blockchain.component.spec.ts | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/display-blockchain/display-blockchain.component.ts      | TypeScript |         35 |         76 |         20 |        131 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/http.service.spec.ts                                    | TypeScript |         12 |          0 |          5 |         17 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/http.service.ts                                         | TypeScript |         71 |         17 |         26 |        114 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/login/login.component.css                               | CSS        |         35 |          0 |          8 |         43 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/login/login.component.html                              | HTML       |         49 |          0 |          6 |         55 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/login/login.component.spec.ts                           | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/login/login.component.ts                                | TypeScript |         66 |          9 |         30 |        105 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/main-page/main-page.component.css                       | CSS        |          8 |          0 |          0 |          8 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/main-page/main-page.component.html                      | HTML       |         93 |          3 |          8 |        104 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/main-page/main-page.component.spec.ts                   | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/main-page/main-page.component.ts                        | TypeScript |         13 |          0 |         16 |         29 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/marketPage/marketPage.component.css                     | CSS        |         51 |          8 |         11 |         70 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/marketPage/marketPage.component.html                    | HTML       |        123 |          1 |         10 |        134 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/marketPage/marketPage.component.spec.ts                 | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/marketPage/marketPage.component.ts                      | TypeScript |        193 |         15 |         30 |        238 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/navbar/navbar.component.css                             | CSS        |         38 |          5 |          7 |         50 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/navbar/navbar.component.html                            | HTML       |         62 |          5 |          5 |         72 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/navbar/navbar.component.spec.ts                         | TypeScript |         35 |          0 |          6 |         41 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/navbar/navbar.component.ts                              | TypeScript |         79 |         12 |         16 |        107 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/profilePage/profilePage.component.css                   | CSS        |         15 |          8 |          4 |         27 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/profilePage/profilePage.component.html                  | HTML       |        168 |        121 |         26 |        315 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/profilePage/profilePage.component.spec.ts               | TypeScript |         20 |          0 |          8 |         28 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/profilePage/profilePage.component.ts                    | TypeScript |        110 |         24 |         24 |        158 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/services/dialog-data.ts                                 | TypeScript |         15 |          0 |          2 |         17 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/services/dialog.service.ts                              | TypeScript |         38 |          0 |          5 |         43 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/services/user.service.ts                                | TypeScript |         14 |          0 |          6 |         20 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/user-profile/user-profile.component.css                 | CSS        |         35 |          0 |          8 |         43 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/user-profile/user-profile.component.html                | HTML       |        119 |         51 |          5 |        175 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/user-profile/user-profile.component.spec.ts             | TypeScript |         20 |          0 |          6 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/app/user-profile/user-profile.component.ts                  | TypeScript |         38 |          1 |         12 |         51 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/environments/environment.prod.ts                            | TypeScript |          3 |          0 |          1 |          4 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/environments/environment.ts                                 | TypeScript |          3 |         11 |          3 |         17 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/index.html                                                  | HTML       |         17 |          0 |          1 |         18 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/main.ts                                                     | TypeScript |          9 |          0 |          4 |         13 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/polyfills.ts                                                | TypeScript |          1 |         57 |          8 |         66 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/styles.css                                                  | CSS        |          5 |          1 |          4 |         10 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/test.ts                                                     | TypeScript |         18 |          4 |          4 |         26 |
+| /home/kareem/coding/FYP/P2P-Blockchain-Frontend/src/theme.scss                                                  | SCSS       |         17 |          7 |          8 |         32 |
+| Total                                                                                                           |            |      2,346 |        573 |        479 |      3,398 |
++-----------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

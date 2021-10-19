@@ -53,28 +53,23 @@ export class ProfilePageComponent implements OnInit, OnDestroy{
                     order.Issuer == this.user.UserName);
             }
             this.MarketFetched = true;
+            this._httpService.getBlockChain().subscribe(data =>{
+                if (data!=null){
+                    console.log(data)
+                    this.blocks = data.filter( block => (block.AllData.Seller == this.user.UserName || block.AllData.Buyer == this.user.UserName));
+                        this.dataSource =new MatTableDataSource<blockInterface>(this.blocks)
+                        this.dataSource.paginator= this.paginator
+                        this.obs =this.dataSource.connect();
+                }
+                console.log(this.blocks)
+                this.BlocksFetched=true;
+            });
         }); 
         });  
-        this._httpService.getBlockChain().subscribe(data =>{
-            if (data!=null){
-                this.blocks = data.filter(block =>
-                    block.AllData.Seller || block.AllData.Buyer ==this.user.UserName)
-                    this.dataSource =new MatTableDataSource<blockInterface>(this.blocks)
-                    this.dataSource.paginator= this.paginator
-                    this.obs =this.dataSource.connect();
-            }
-            console.log(this.blocks)
-            this.BlocksFetched=true;
-        });
+        
     }
-    // ShowOpen(){
-    //     this.Showopen=true;
-    //     this.Showcompleted=false;
-    // }
-    // ShowCompleted(){
-    //     this.Showopen=false;
-    //     this.Showcompleted=true;
-    // }
+    
+
 
     DeleteOrder(order: Order){
         
